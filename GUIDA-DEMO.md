@@ -1,9 +1,13 @@
 # MyColor Gestionale – guida alla demo di venerdì 6 novembre 2026
 
-**Link demo (online):** https://claude.ai/artifact/QEukzh2RDbvtzoUsYpvVkU
-L'artifact è privato: apri il link dal tuo account Claude, oppure condividilo dal menu Share della pagina prima dell'appuntamento se vuoi farlo aprire a Ivo sul suo telefono.
+**Link demo (online, pubblico):** https://capomastro-self.vercel.app
+Si apre da qualsiasi browser e telefono senza login. Per l'app operaio: https://capomastro-self.vercel.app/?u=operaio
 
-**Copia offline (piano B senza internet):** apri `mycolor-demo/dev.html` nel browser. Funziona anche senza rete.
+**Link alternativo (artifact Claude, privato):** https://claude.ai/artifact/QEukzh2RDbvtzoUsYpvVkU (va condiviso dal menu Share).
+
+**Copia offline (piano B senza internet):** apri `mycolor-demo/index.html` nel browser. Funziona anche senza rete.
+
+**Codice:** https://github.com/navai-ch/capomastro. Dopo ogni modifica: `git push` e `vercel deploy --prod` dalla cartella (il deploy automatico da GitHub si attiva installando l'app GitHub di Vercel sull'organizzazione navai-ch).
 
 Tutti i dati sono inventati. Nomi dell'ufficio (Ivo, Stefano, Antonio, Letizia) presi dal sito mycolorgroup.ch; operai, cantieri, clienti, fornitori e importi sono finti ma verosimili. Le modifiche fatte durante la demo restano salvate sul dispositivo: in **Impostazioni → Dati → Ripristina dati demo** torni allo stato iniziale.
 
