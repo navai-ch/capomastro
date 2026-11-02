@@ -2,7 +2,7 @@
 const D = window.MC;
 const P = D.PARAMS;
 const LOGO = 'logo-mycolor.png';
-const DB_KEY = 'mc-db-v4';
+const DB_KEY = 'mc-db-v6';
 const clone = (x) => JSON.parse(JSON.stringify(x));
 
 // ---------- banca dati in memoria (clonata dai dati demo, persistita in localStorage) ----------
@@ -13,7 +13,7 @@ function freshDB() {
     kmPrivati: clone(D.KM_PRIVATI), viaggi: clone(D.VIAGGI), offerte: clone(D.OFFERTE), fatture: clone(D.FATTURE), capitolati: clone(D.CAPITOLATI),
     magazzino: clone(D.MAGAZZINO), ordini: clone(D.ORDINI), attivita: clone(D.ATTIVITA_CRM), email: clone(D.EMAIL), eventi: clone(D.EVENTI),
     canali: clone(D.CANALI), messaggi: clone(D.MESSAGGI), notifiche: clone(D.NOTIFICHE).map((n) => ({ ...n, letta: false })), assenze: clone(D.ASSENZE),
-    documenti: clone(D.DOCUMENTI), inviti: clone(D.INVITI), params: clone(D.PARAMS), carpool: {}, plan: {}, capChat: {},
+    documenti: clone(D.DOCUMENTI), inviti: clone(D.INVITI), accounts: clone(D.ACCOUNTS), params: clone(D.PARAMS), carpool: {}, plan: {}, capChat: {},
   };
 }
 let DB = freshDB();
@@ -487,7 +487,7 @@ function eventModalRead(m) { const e = DB.eventi.find((x) => x.id === m.id); ret
 
 function renderModal() {
   const m = S.modal; if (!m) return '';
-  const inner = { form: modalForm, confirm: confirmModal, 'bulk-edit': bulkEditModal, compose: composeModal, email: emailModal, worker: workerModal, 'docs-worker': docsWorkerModal, assign: assignModal, fwiz: fwizModal, ocr: ocrModal, 'cap-upload': capUploadModal, print: printModal, stock: moveStockModal, invite: inviteModal, 'plan-cell': planCellModal, 'new-dm': newDmModal, 'event-read': eventModalRead, 'offerta-new': newOffertaModal, acconti: accontiModal, 'offerta-link': linkModal }[m.type];
+  const inner = { form: modalForm, confirm: confirmModal, 'bulk-edit': bulkEditModal, compose: composeModal, email: emailModal, worker: workerModal, 'docs-worker': docsWorkerModal, assign: assignModal, fwiz: fwizModal, ocr: ocrModal, 'cap-upload': capUploadModal, print: printModal, stock: moveStockModal, invite: inviteModal, 'plan-cell': planCellModal, 'new-dm': newDmModal, 'event-read': eventModalRead, 'offerta-new': newOffertaModal, acconti: accontiModal, 'offerta-link': linkModal, 'account-add': accountAddModal }[m.type];
   const cls = ['print', 'fwiz', 'offerta-new'].includes(m.type) ? 'wide' : m.type === 'confirm' || m.type === 'bulk-edit' ? 'narrow' : '';
   return `<div class="modal-bg" data-act="close-bg"><div class="modal ${cls}">${inner ? inner(m) : ''}</div></div>`;
 }
