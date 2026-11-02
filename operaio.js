@@ -86,7 +86,7 @@ function vOpBol() {
     <div><label for="f-note">Descrizione lavori e note per l'ufficio ${F.vocale ? I('mic') : ''}</label><textarea id="f-note" rows="3" data-bind="note" placeholder="imprevisti, materiale mancante, extra richiesti dal cliente">${esc(F.note)}</textarea></div>
     <div><label for="f-foto">Foto del lavoro</label><input id="f-foto" type="file" accept="image/*" capture="environment" multiple data-act-change="bol-foto">${F.foto ? `<div class="small muted" style="margin-top:4px">${I('camera')} ${F.foto} foto allegate</div>` : ''}</div>
     <button class="btn primary xl block" data-act="send-bol">Invia a ${esc(resp.nome.split(' ')[0])} e Ivo</button></div>
-    <div><div class="eyebrow" style="margin-bottom:6px">I miei ultimi bollettini</div>${mine.map((b) => `<div class="listrow"><span><span class="b">${fshort(b.data)}</span> · ${esc((cant(b.cantiere) || {}).nome || '')}<br><span class="small muted">${esc(b.attivita)} · ${n1(b.ore)} h + ${n1(b.viaggio)} viaggio${b.vocale ? (' · ' + I('mic')) : ''}</span></span>${pill(b.stato)}</div>`).join('')}</div>`);
+    <div><div class="eyebrow" style="margin-bottom:6px">I miei ultimi bollettini</div>${mine.map((b) => `<div class="listrow click" data-act="bol-open" data-id="${b.id}"><span><span class="b">${fshort(b.data)}</span> · ${esc((cant(b.cantiere) || {}).nome || '')}<br><span class="small muted">${esc(b.attivita)} · ${n1(b.ore)} h + ${n1(b.viaggio)} viaggio${b.vocale ? (' · ' + I('mic')) : ''}</span></span>${pill(b.stato)}</div>`).join('')}</div>`);
 }
 
 // ---------- VIAGGI E KM ----------

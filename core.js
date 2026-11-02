@@ -487,7 +487,7 @@ function eventModalRead(m) { const e = DB.eventi.find((x) => x.id === m.id); ret
 
 function renderModal() {
   const m = S.modal; if (!m) return '';
-  const inner = { form: modalForm, confirm: confirmModal, 'bulk-edit': bulkEditModal, compose: composeModal, email: emailModal, worker: workerModal, 'docs-worker': docsWorkerModal, assign: assignModal, fwiz: fwizModal, ocr: ocrModal, 'cap-upload': capUploadModal, print: printModal, stock: moveStockModal, invite: inviteModal, 'plan-cell': planCellModal, 'new-dm': newDmModal, 'event-read': eventModalRead, 'offerta-new': newOffertaModal, acconti: accontiModal, 'offerta-link': linkModal, 'account-add': accountAddModal }[m.type];
+  const inner = { form: modalForm, confirm: confirmModal, 'bulk-edit': bulkEditModal, compose: composeModal, email: emailModal, worker: workerModal, 'docs-worker': docsWorkerModal, assign: assignModal, fwiz: fwizModal, ocr: ocrModal, 'cap-upload': capUploadModal, print: printModal, stock: moveStockModal, invite: inviteModal, 'plan-cell': planCellModal, 'new-dm': newDmModal, 'event-read': eventModalRead, 'offerta-new': newOffertaModal, acconti: accontiModal, 'offerta-link': linkModal, 'account-add': accountAddModal, 'bol-detail': bolDetailModal, 'ana-month': anaMonthModal }[m.type];
   const cls = ['print', 'fwiz', 'offerta-new'].includes(m.type) ? 'wide' : m.type === 'confirm' || m.type === 'bulk-edit' ? 'narrow' : '';
   return `<div class="modal-bg" data-act="close-bg"><div class="modal ${cls}">${inner ? inner(m) : ''}</div></div>`;
 }

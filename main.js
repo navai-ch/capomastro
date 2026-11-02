@@ -1,5 +1,5 @@
 /* MyColor Gestionale – rendering, routing, eventi e avvio */
-const VIEWS = { home: vHome, cantieri: vCantieri, cantiere: vCantiere, pianificazione: vPianificazione, bollettini: vBollettini, persone: vPersone, cliente: vCliente, fornitore: vFornitore, veicoli: vVeicoli, commerciale: vCommerciale, offerta: vOfferta, fattura: vFattura, capitolato: vCapitolato, calendario: vCalendario, messaggi: vMessaggi, inbox: vInbox, magazzino: vMagazzino, contabilita: vContabilita, impostazioni: vImpostazioni };
+const VIEWS = { home: vHome, cantieri: vCantieri, cantiere: vCantiere, pianificazione: vPianificazione, bollettini: vBollettini, persone: vPersone, cliente: vCliente, fornitore: vFornitore, veicoli: vVeicoli, commerciale: vCommerciale, offerta: vOfferta, fattura: vFattura, capitolato: vCapitolato, calendario: vCalendario, messaggi: vMessaggi, inbox: vInbox, kpi: vKpi, magazzino: vMagazzino, contabilita: vContabilita, impostazioni: vImpostazioni };
 const OPV = { 'op-oggi': vOpOggi, 'op-bol': vOpBol, 'op-km': vOpKm, 'op-msg': vOpMsg, 'op-mese': vOpMese, 'op-ai': vOpAi };
 VIEWS.firma = vFirma;
 const TABKEY = { impostazioni: 'imp', persone: 'persone', commerciale: 'comm', veicoli: 'veic', bollettini: 'bol', contabilita: 'cont', magazzino: 'mag', cantiere: 'cant' };
@@ -24,6 +24,7 @@ function renderInner() {
   if (focusId) { const el = document.getElementById(focusId); if (el && el.type !== 'file') { el.focus(); try { if (caret != null && el.setSelectionRange) el.setSelectionRange(caret, caret); } catch (_) {} } }
   ['msgs', 'ai-msgs'].forEach((id) => { const el = document.getElementById(id); if (el) el.scrollTop = el.scrollHeight; });
   if (typeof afterRender === 'function') afterRender();
+  if (typeof linkify === 'function') linkify();
   persist();
 }
 
@@ -90,7 +91,7 @@ document.addEventListener('click', (e) => {
     'notif-open': () => { const n = DB.notifiche.find((x) => x.id === id); n.letta = true; if (n.view === 'messaggi') { S.chatCh = n.id2; go('messaggi'); } else if (n.view === 'commerciale') { S.tab.comm = n.id2 === 'fatture' ? 'fat' : 'off'; go('commerciale'); } else if (n.view === 'capitolato' || n.view === 'cantiere' || n.view === 'cliente' || n.view === 'fornitore') go(n.view, n.id2); else go(n.view); },
     plus: () => { if (id.startsWith('form:')) openNew(id.slice(5)); else if (id === 'new-offerta') A['new-offerta'](); else if (id === 'fwiz') { S.modal = { type: 'fwiz' }; render(); } else if (id === 'ocr') { S.modal = { type: 'ocr', step: 'idle' }; render(); } else if (id === 'cap-upload') { S.modal = { type: 'cap-upload', step: 'idle' }; render(); } else if (id === 'compose') openCompose({}); else if (id === 'new-dm') { S.modal = { type: 'new-dm' }; render(); } else if (id === 'stock') { S.modal = { type: 'stock', tipo: 'Scarico' }; render(); } else if (id === 'invite') { S.modal = { type: 'invite' }; render(); } },
     'open-cantiere': () => go('cantiere', id), 'open-cliente': () => go('cliente', id), 'open-fornitore': () => go('fornitore', id), 'open-offerta': () => go('offerta', id), 'open-fattura': () => go('fattura', id), 'open-capitolato': () => go('capitolato', id),
-    'open-worker': () => { S.modal = { type: 'worker', id }; render(); },
+    'open-worker': () => { if (S.user.role !== 'operaio' && S.view !== 'persone') { S.tab.persone = 'coll'; go('persone'); } S.modal = { type: 'worker', id }; render(); },
     'open-email': () => { S.modal = { type: 'email', id }; render(); },
     'open-evento': () => { S.modal = { type: 'event-read', id }; render(); },
     'open-ff': () => { S.modal = { type: 'form', ent: 'fatturaForn', id }; render(); },

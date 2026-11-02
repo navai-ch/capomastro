@@ -41,6 +41,13 @@ Login: "Accedi con Microsoft 365" apre il selettore account. L'e-mail/password f
 - **Impostazioni**: profilo e notifiche, azienda e parametri (break-even, struttura, indennità… ricalcolo live), **utenti e inviti** (invita via Microsoft o PIN, reinvia, revoca, disattiva), ruoli, **lingua** (IT/DE/FR/EN sul menu) e **tema** (chiaro/scuro/auto), integrazioni, dati (ripristino, export JSON, import PUNTANET).
 - **App operaio** (telefono): Oggi (viaggio GPS "Parto/Sono arrivato", timbratura con geofence, cambio cantiere, vacanze, malattia, scansione materiale), Bollettino (**detta a voce**: ore, viaggio, attività e note compilate in automatico, inviate a responsabile e direttore), Viaggi e km, Messaggi (con voce), Io (conguaglio, vacanze, dati).
 
+## Novità della versione 7 (3 novembre)
+
+- **Analisi dei KPI**: clic su un riquadro della dashboard (o sul menu dell'analisi) apre la pagina con l'andamento mese per mese o per trimestre, la retta di regressione con proiezione a 3 periodi, R² come affidabilità del trend, filtro "da data a data" con preset, confronto con l'anno precedente e tabella con variazioni; clic su un mese apre il riepilogo del mese. Export CSV. Sette KPI: margine, CHF/ora, fatturato, ore, bollettini, incassi/scoperto, offerte.
+- **Bollettini cliccabili**: ogni riga (anche nell'app operaio) apre il dettaglio con giornata, GPS, costo e valore, nota vocale, approvazione e altri bollettini della persona.
+- **Entità cliccabili ovunque**: nomi di collaboratori, clienti, fornitori, cantieri e numeri di offerte e fatture sono link in tutte le tabelle, elenchi e avvisi (sottolineatura puntinata). Il nome di una persona apre la sua scheda sotto Persone → Collaboratori.
+- **Valutazione del gestionale** con proposte prioritarie in `VALUTAZIONE.md`.
+
 ## Novità della versione 6 (2 novembre, sera)
 
 - **Tema chiaro/scuro**: icona sole/luna in alto a destra, oppure Auto/Chiaro/Scuro nel menu del profilo (in alto a destra e in basso a sinistra) e in Impostazioni → Lingua e aspetto.

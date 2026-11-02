@@ -446,6 +446,31 @@ window.MC = (function () {
     { m: 'Lug', fatturato: 466000, costi: 397000, ore: 5520 }, { m: 'Ago', fatturato: 391000, costi: 346000, ore: 4710 }, { m: 'Set', fatturato: 508000, costi: 414000, ore: 6020 },
     { m: 'Ott', fatturato: 524000, costi: 425000, ore: 6150 }, { m: 'Nov', fatturato: 171000, costi: 139000, ore: 1890, parziale: true },
   ];
+  const MESI_STORICO = [
+    { ym: '2025-01', fatturato: 356000, costi: 301000, ore: 4240, bollettini: 523, offerte: 12, offerteChf: 480000, vinte: 7, incassato: 370000, aperto: 163000 },
+    { ym: '2025-02', fatturato: 361000, costi: 311000, ore: 4390, bollettini: 542, offerte: 16, offerteChf: 462000, vinte: 9, incassato: 337000, aperto: 185000 },
+    { ym: '2025-03', fatturato: 408000, costi: 351000, ore: 5090, bollettini: 628, offerte: 10, offerteChf: 566000, vinte: 6, incassato: 431000, aperto: 206000 },
+    { ym: '2025-04', fatturato: 436000, costi: 367000, ore: 5410, bollettini: 668, offerte: 13, offerteChf: 612000, vinte: 7, incassato: 433000, aperto: 178000 },
+    { ym: '2025-05', fatturato: 460000, costi: 402000, ore: 5700, bollettini: 704, offerte: 14, offerteChf: 541000, vinte: 8, incassato: 417000, aperto: 227000 },
+    { ym: '2025-06', fatturato: 466000, costi: 403000, ore: 5440, bollettini: 672, offerte: 14, offerteChf: 592000, vinte: 8, incassato: 461000, aperto: 240000 },
+    { ym: '2025-07', fatturato: 436000, costi: 373000, ore: 5080, bollettini: 627, offerte: 10, offerteChf: 663000, vinte: 7, incassato: 430000, aperto: 215000 },
+    { ym: '2025-08', fatturato: 350000, costi: 306000, ore: 4280, bollettini: 528, offerte: 9, offerteChf: 513000, vinte: 5, incassato: 351000, aperto: 174000 },
+    { ym: '2025-09', fatturato: 459000, costi: 388000, ore: 5610, bollettini: 693, offerte: 16, offerteChf: 570000, vinte: 9, incassato: 468000, aperto: 176000 },
+    { ym: '2025-10', fatturato: 500000, costi: 424000, ore: 5990, bollettini: 740, offerte: 16, offerteChf: 639000, vinte: 10, incassato: 494000, aperto: 209000 },
+    { ym: '2025-11', fatturato: 161000, costi: 138000, ore: 1930, bollettini: 238, offerte: 13, offerteChf: 188000, vinte: 7, incassato: 156000, aperto: 85000 },
+    { ym: '2025-12', fatturato: 455000, costi: 383000, ore: 5660, bollettini: 699, offerte: 10, offerteChf: 538000, vinte: 6, incassato: 432000, aperto: 183000 },
+    { ym: '2026-01', fatturato: 388000, costi: 334000, ore: 4980, bollettini: 615, offerte: 15, offerteChf: 594000, vinte: 8, incassato: 378000, aperto: 171000 },
+    { ym: '2026-02', fatturato: 402000, costi: 341000, ore: 5120, bollettini: 632, offerte: 15, offerteChf: 635000, vinte: 8, incassato: 375000, aperto: 169000 },
+    { ym: '2026-03', fatturato: 455000, costi: 378000, ore: 5610, bollettini: 693, offerte: 12, offerteChf: 503000, vinte: 8, incassato: 424000, aperto: 195000 },
+    { ym: '2026-04', fatturato: 471000, costi: 392000, ore: 5740, bollettini: 709, offerte: 11, offerteChf: 617000, vinte: 6, incassato: 472000, aperto: 255000 },
+    { ym: '2026-05', fatturato: 498000, costi: 409000, ore: 5980, bollettini: 738, offerte: 9, offerteChf: 662000, vinte: 6, incassato: 534000, aperto: 247000 },
+    { ym: '2026-06', fatturato: 512000, costi: 421000, ore: 6080, bollettini: 751, offerte: 15, offerteChf: 665000, vinte: 9, incassato: 505000, aperto: 229000 },
+    { ym: '2026-07', fatturato: 466000, costi: 397000, ore: 5520, bollettini: 681, offerte: 12, offerteChf: 528000, vinte: 7, incassato: 433000, aperto: 204000 },
+    { ym: '2026-08', fatturato: 391000, costi: 346000, ore: 4710, bollettini: 581, offerte: 9, offerteChf: 450000, vinte: 6, incassato: 390000, aperto: 212000 },
+    { ym: '2026-09', fatturato: 508000, costi: 414000, ore: 6020, bollettini: 743, offerte: 9, offerteChf: 577000, vinte: 5, incassato: 492000, aperto: 248000 },
+    { ym: '2026-10', fatturato: 524000, costi: 425000, ore: 6150, bollettini: 759, offerte: 14, offerteChf: 734000, vinte: 8, incassato: 482000, aperto: 243000 },
+    { ym: '2026-11', fatturato: 171000, costi: 139000, ore: 1890, bollettini: 236, offerte: 4, offerteChf: 116300, vinte: 1, incassato: 86000, aperto: 219430, parziale: true },
+  ];
   const EMAIL = [
     { id: 'E-01', rel: { t: 'cliente', id: 'K01' }, folder: 'Inbox', da: 'Giorgio Bernasconi <g.bernasconi@bluewin.ch>', a: 'ivo@mycolorgroup.ch', oggetto: 'Re: tempistiche consegna piano 1', data: '2026-11-04 09:12', unread: false, testo: 'Buongiorno Ivo,\n\ngrazie per l\'aggiornamento. Per noi va bene la consegna del piano 1 entro il 20 novembre. Ci può mandare anche un preventivo per la tinteggiatura del garage?\n\nCordiali saluti\nGiorgio Bernasconi', allegati: [] },
     { id: 'E-02', rel: { t: 'cliente', id: 'K01' }, folder: 'Sent', da: 'stefano@mycolorgroup.ch', a: 'g.bernasconi@bluewin.ch', oggetto: 'Variazione: risanamento umidità cantina', data: '2026-10-28 17:40', unread: false, testo: 'Gentile signor Bernasconi,\n\ndurante i lavori in cantina abbiamo riscontrato umidità di risalita sul muro nord. Allego la variazione (CHF 2\'640) con foto. Resta in attesa di una sua approvazione.\n\nCordiali saluti\nStefano Montagnese', allegati: ['Variazione_cantina.pdf', 'Foto_umidita.jpg'] },
@@ -605,5 +630,5 @@ window.MC = (function () {
     ],
   };
 
-  return { TODAY, TODAY_ISO, PARAMS, CCL, KM, COMPETENZE, CATEGORIE_COSTO, workerCosts, WORKERS, CLIENTI, FORNITORI, CANTIERI, FATTURE_FORNITORI, OCR_SAMPLES, MOVIMENTI, BOLLETTINI, VEICOLI, KM_PRIVATI, VIAGGI, OFFERTE, FATTURE, CAPITOLATI, MAGAZZINO, ORDINI, ATTIVITA_CRM, EMAIL, EVENTI, ACCOUNTS, MENSILE, CANALI, MESSAGGI, NOTIFICHE, ASSENZE, DOCUMENTI, INVITI, RUOLI, SELECTLINE };
+  return { TODAY, TODAY_ISO, PARAMS, CCL, KM, COMPETENZE, CATEGORIE_COSTO, workerCosts, WORKERS, CLIENTI, FORNITORI, CANTIERI, FATTURE_FORNITORI, OCR_SAMPLES, MOVIMENTI, BOLLETTINI, VEICOLI, KM_PRIVATI, VIAGGI, OFFERTE, FATTURE, CAPITOLATI, MAGAZZINO, ORDINI, ATTIVITA_CRM, EMAIL, EVENTI, ACCOUNTS, MENSILE, MESI_STORICO, CANALI, MESSAGGI, NOTIFICHE, ASSENZE, DOCUMENTI, INVITI, RUOLI, SELECTLINE };
 })();
