@@ -427,6 +427,25 @@ pre{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;p
 .portal-nav{display:flex;gap:4px;flex-wrap:wrap}.portal-nav button{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px;cursor:pointer;font:inherit;font-weight:600;font-size:.86rem;color:var(--ink-2);transition:all .15s}.portal-nav button:hover{border-color:var(--brand);color:var(--brand-dark)}.portal-nav button.on{background:var(--brand);border-color:var(--brand);color:#fff}.portal-nav button .ic-svg{width:15px;height:15px}.portal-nav button .cnt{background:#fff;color:var(--brand);border-radius:999px;font-size:.68rem;padding:0 6px;margin-left:2px}.portal-nav button:not(.on) .cnt{background:var(--brand);color:#fff}
 .foto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}.foto{margin:0;aspect-ratio:4/3;border-radius:10px;position:relative;overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s}.foto:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}.foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:8px 10px;font-size:.78rem;font-weight:600;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}.foto figcaption .small{font-weight:400;opacity:.85}
 .qr{width:180px;height:180px;border:1px solid var(--line);border-radius:8px;background:#fff}.qrbox .dl dd{overflow-wrap:anywhere}
+
+/* v9: attività e pianificazione per persona */
+.att .act-ic.bad{color:var(--bad);background:var(--bad-soft);border-color:transparent}.att .act-ic.warn{color:var(--warn);background:var(--warn-soft);border-color:transparent}.att .act-ic.info{color:var(--info);background:var(--info-soft);border-color:transparent}
+.att .act-ic.bad .ic-svg,.att .act-ic.warn .ic-svg,.att .act-ic.info .ic-svg{color:inherit}
+.att .t{font-weight:600}.att.done .t{font-weight:500}
+.att.focus{background:var(--brand-soft);margin:0 -10px;padding-inline:10px;border-radius:8px;animation:attpulse 1.4s ease 1}
+@keyframes attpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--brand) 55%,transparent)}100%{box-shadow:0 0 0 12px transparent}}
+.todo .listrow{padding:8px 0}.todo .listrow .go{color:var(--muted);flex:none}.todo .listrow .go .ic-svg{width:16px;height:16px}.todo .listrow.click:hover .go{color:var(--brand)}
+.plan.p2{grid-template-columns:230px repeat(5,minmax(118px,1fr)) 96px;min-width:980px}
+.plan .ph .cap{display:inline-block;font-weight:500;font-size:.68rem;color:var(--muted);margin-top:2px}
+.plan .pr.grp{background:var(--surface-3,var(--surface-2));font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:5px 8px;min-height:0}
+.plan .wk{text-align:right;font-size:.78rem}.plan .wk .hbar{margin:4px 0 3px}
+.hbar{height:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;overflow:hidden}.hbar i{display:block;height:100%;border-radius:3px;transition:width .3s ease}
+.plan .cell .tot{width:100%;font-size:.68rem;color:var(--muted);margin-top:2px}
+.pchip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:1px 6px 1px 2px;font-size:.7rem;font-weight:600;background:var(--surface);border:1px solid var(--line);cursor:pointer;color:var(--ink);transition:border-color .12s,transform .12s}
+.pchip:hover{border-color:var(--brand);transform:translateY(-1px)}.pchip .avatar.xs{width:18px;height:18px;font-size:.52rem}.pchip.ot{border-color:var(--warn);color:var(--warn)}.pchip.half{border-style:dashed}
+.cchip{display:flex;flex-direction:column;width:100%;border-left:3px solid var(--c);padding:3px 6px;border-radius:4px;background:color-mix(in srgb,var(--c) 12%,transparent);font-size:.7rem;line-height:1.25;min-width:0;text-align:left;cursor:pointer}
+.cchip b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cchip span{color:var(--muted)}
+.plan .cell .pill{font-size:.66rem;padding:1px 7px}
 </style>
 </head><body><div id="app"></div>
 <script src="data.js"></script>
@@ -441,5 +460,6 @@ pre{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;p
 <script src="extra2.js"></script>
 <script src="extra3.js"></script>
 <script src="extra4.js"></script>
+<script src="extra5.js"></script>
 <script src="main.js"></script>
 </body></html>

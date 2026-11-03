@@ -37,9 +37,8 @@ Stato: versione 7 della demo (3 novembre 2026). Valutazione fatta modulo per mod
 - **Assenze con saldi**: vacanze, ore di recupero, malattia con certificato dopo 3 giorni, con saldo visibile al collaboratore.
 
 ### 5. Pianificazione
-- **Capacità e carico**: la griglia assegna persone a cantieri ma non confronta le ore disponibili con le ore previste; manca l'avviso "a questo ritmo il cantiere finisce in ritardo".
-- **Trascinamento multi-giorno, copia settimana, squadre fisse, competenze richieste** (es. serve un gessatore con ponteggio).
-- **Vista per collaboratore** (dove sono questa settimana) e notifica push del cambio pianificazione.
+- *Fatto nella v9*: ore e orario per persona, giornate divise, capacità e carico per giorno, obiettivo settimanale e fine stimata per cantiere, competenze richieste, vista per collaboratore, copia settimana, invio push alle squadre, settimana nell'app operaio.
+- **Ancora da fare**: trascinamento delle persone tra caselle, squadre fisse riutilizzabili, pianificazione a più settimane (Gantt per cantiere) e vincoli reali (patente, veicolo, lingua).
 
 ### 6. Persone e HR
 - **Documenti con scadenza** (permessi di soggiorno, patenti, certificati, corsi sicurezza) con avvisi 60/30 giorni.

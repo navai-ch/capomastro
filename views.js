@@ -15,7 +15,7 @@ function vLogin() {
 
 // ---------- SHELL UFFICIO ----------
 const NAV = [
-  ['sep', 'gestione'], ['home', I('home'), 'home'], ['cantieri', I('building'), 'cantieri'], ['pianificazione', I('planning'), 'pianificazione'], ['bollettini', I('clipboard'), 'bollettini'], ['persone', I('users'), 'persone'], ['veicoli', I('truck'), 'veicoli'], ['magazzino', I('package'), 'magazzino'],
+  ['sep', 'gestione'], ['home', I('home'), 'home'], ['attivita', I('tasks'), 'attivita'], ['cantieri', I('building'), 'cantieri'], ['pianificazione', I('planning'), 'pianificazione'], ['bollettini', I('clipboard'), 'bollettini'], ['persone', I('users'), 'persone'], ['veicoli', I('truck'), 'veicoli'], ['magazzino', I('package'), 'magazzino'],
   ['sep', 'commerciale_sep'], ['commerciale', I('quote'), 'commerciale'], ['contabilita', I('calculator'), 'contabilita'],
   ['sep', 'comunicazione'], ['inbox', I('inbox'), 'inbox'], ['calendario', I('calendar'), 'calendario'], ['messaggi', I('message'), 'messaggi'],
 ];
@@ -31,7 +31,8 @@ function shell(inner) {
   const unreadMsg = DB.messaggi.filter((m) => m.ch.startsWith('dm-') && m.ch.includes(S.user.wid) && m.autore !== S.user.wid && !m.letto).length;
   const cur = VIEW_PARENT[S.view] || S.view;
   const unreadMail = DB.email.filter((m) => m.folder === 'Inbox' && m.unread).length;
-  const navBtn = (n) => n[0] === 'sep' ? `<div class="sep">${t(n[1])}</div>` : `<button data-act="nav" data-id="${n[0]}" class="${cur === n[0] ? 'on' : ''}"><span class="ic">${n[1]}</span>${t(n[2])}${n[0] === 'bollettini' && daApprovare ? `<span class="cnt">${daApprovare}</span>` : ''}${n[0] === 'messaggi' && unreadMsg ? `<span class="cnt">${unreadMsg}</span>` : ''}${n[0] === 'inbox' && unreadMail ? `<span class="cnt">${unreadMail}</span>` : ''}</button>`;
+  const attDueN = typeof attDue === 'function' ? attDue().length : 0;
+  const navBtn = (n) => n[0] === 'sep' ? `<div class="sep">${t(n[1])}</div>` : `<button data-act="nav" data-id="${n[0]}" class="${cur === n[0] ? 'on' : ''}"><span class="ic">${n[1]}</span>${t(n[2])}${n[0] === 'bollettini' && daApprovare ? `<span class="cnt">${daApprovare}</span>` : ''}${n[0] === 'messaggi' && unreadMsg ? `<span class="cnt">${unreadMsg}</span>` : ''}${n[0] === 'inbox' && unreadMail ? `<span class="cnt">${unreadMail}</span>` : ''}${n[0] === 'attivita' && attDueN ? `<span class="cnt">${attDueN}</span>` : ''}</button>`;
   const res = S.searchOpen ? searchAll(S.search) : [];
   const groups = []; res.forEach((r) => { let g = groups.find((x) => x.g === r.g); if (!g) { g = { g: r.g, items: [] }; groups.push(g); } g.items.push(r); });
   const w = me();

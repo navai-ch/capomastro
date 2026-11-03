@@ -1,5 +1,5 @@
 /* MyColor Gestionale – rendering, routing, eventi e avvio */
-const VIEWS = { home: vHome, cantieri: vCantieri, cantiere: vCantiere, pianificazione: vPianificazione, bollettini: vBollettini, persone: vPersone, cliente: vCliente, fornitore: vFornitore, veicoli: vVeicoli, commerciale: vCommerciale, offerta: vOfferta, fattura: vFattura, capitolato: vCapitolato, calendario: vCalendario, messaggi: vMessaggi, inbox: vInbox, kpi: vKpi, magazzino: vMagazzino, contabilita: vContabilita, impostazioni: vImpostazioni };
+const VIEWS = { home: vHome, cantieri: vCantieri, cantiere: vCantiere, pianificazione: vPianificazione, bollettini: vBollettini, persone: vPersone, cliente: vCliente, fornitore: vFornitore, veicoli: vVeicoli, commerciale: vCommerciale, offerta: vOfferta, fattura: vFattura, capitolato: vCapitolato, calendario: vCalendario, messaggi: vMessaggi, inbox: vInbox, kpi: vKpi, attivita: vAttivita, magazzino: vMagazzino, contabilita: vContabilita, impostazioni: vImpostazioni };
 const OPV = { 'op-oggi': vOpOggi, 'op-bol': vOpBol, 'op-km': vOpKm, 'op-msg': vOpMsg, 'op-mese': vOpMese, 'op-ai': vOpAi };
 VIEWS.firma = vFirma;
 const TABKEY = { impostazioni: 'imp', persone: 'persone', commerciale: 'comm', veicoli: 'veic', bollettini: 'bol', contabilita: 'cont', magazzino: 'mag', cantiere: 'cant' };
