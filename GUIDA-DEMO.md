@@ -41,6 +41,14 @@ Login: "Accedi con Microsoft 365" apre il selettore account. L'e-mail/password f
 - **Impostazioni**: profilo e notifiche, azienda e parametri (break-even, struttura, indennità… ricalcolo live), **utenti e inviti** (invita via Microsoft o PIN, reinvia, revoca, disattiva), ruoli, **lingua** (IT/DE/FR/EN sul menu) e **tema** (chiaro/scuro/auto), integrazioni, dati (ripristino, export JSON, import PUNTANET).
 - **App operaio** (telefono): Oggi (viaggio GPS "Parto/Sono arrivato", timbratura con geofence, cambio cantiere, vacanze, malattia, scansione materiale), Bollettino (**detta a voce**: ore, viaggio, attività e note compilate in automatico, inviate a responsabile e direttore), Viaggi e km, Messaggi (con voce), Io (conguaglio, vacanze, dati).
 
+## Novità della versione 8 (3 novembre)
+
+- **Budget per fase e margine a finire** (scheda cantiere → Redditività): fasi con ore previste/fatte/a finire e materiale, margine a fine lavori previsto contro margine preventivato, costo a finire, avviso quando le ore corrono più dei lavori; "Modifica budget" per correggere ore e materiale per fase.
+- **Variazioni in corso d'opera come oggetto**: stati Proposta → Inviata al cliente → Approvata/Rifiutata, "Invia al cliente" manda l'e-mail con il link del portale; il cliente approva o rifiuta (con motivo) dal portale e il contratto del cantiere si aggiorna; tutto tracciato nella scheda offerta. Visibili sia nella scheda offerta sia nel cantiere.
+- **Saldi assenze**: vacanze disponibili (residui meno richieste e pianificate), recupero ore da straordinari, malattia e permessi 2026, nell'app operaio (scheda Io, con "Recupero ore") e nella scheda persona.
+- **Scadenze documenti**: permessi B/C/G, corsi SUVA, visite mediche, patenti, attestati ponteggi; per i veicoli collaudo MFK, servizio, assicurazione, vignetta. Card e avviso in dashboard a 60 giorni, elenco completo con filtri, scadenze nella scheda persona e nella tabella veicoli, "Rinnovato" con un clic.
+- **Portale cliente** sullo stesso link della firma (`#firma/<token>`, accesso con l'e-mail del cliente): schede Offerta, Lavori (avanzamento, fasi, aggiornamenti dal cantiere, foto, referenti), Variazioni da approvare, Fatture con QR-fattura per pagare, Documenti con caricamento file. Da provare: scheda offerta → "Apri come cliente".
+
 ## Novità della versione 7 (3 novembre)
 
 - **Analisi dei KPI**: clic su un riquadro della dashboard (o sul menu dell'analisi) apre la pagina con l'andamento mese per mese o per trimestre, la retta di regressione con proiezione a 3 periodi, R² come affidabilità del trend, filtro "da data a data" con preset, confronto con l'anno precedente e tabella con variazioni; clic su un mese apre il riepilogo del mese. Export CSV. Sette KPI: margine, CHF/ora, fatturato, ore, bollettini, incassi/scoperto, offerte.

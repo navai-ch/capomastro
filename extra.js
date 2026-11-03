@@ -206,7 +206,7 @@ function printModal(m) {
     <p class="small muted" style="margin-top:18px">Pagamento a ${esc(cl.pagamento || '30 giorni')} netto. Grazie per la fiducia.</p></div></div>`;
 }
 // pagina pubblica del cliente (#firma/<token>)
-function vFirma() {
+function vFirmaBase() {
   const o = DB.offerte.find((x) => x.link && x.link.token === S.id); const F = S.firma && S.firma.token === S.id ? S.firma : (S.firma = { token: S.id, phase: 'gate', email: '', sel: {}, tab: 'draw', name: '', place: '', date: D.TODAY_ISO });
   const wrap = (inner) => `<div class="firma-page">${inner}</div>`;
   if (!o) return wrap(`<div class="login"><div class="login-card"><img src="${LOGO}" alt="MY COLOR"><h1>Link non valido</h1><p class="muted">Questa offerta non è più disponibile. Contatta MY COLOR al +41 91 605 00 00.</p>${S.user ? `<button class="btn" data-act="nav" data-id="commerciale">Torna al gestionale</button>` : ''}</div></div>`);
