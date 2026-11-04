@@ -81,7 +81,7 @@ document.addEventListener('click', (e) => {
     'ms-picker': () => { S.sel.msPicker = true; render(); },
     'ms-back': () => { S.sel.msPicker = false; render(); },
     login: () => { const u = USERS.find((x) => x.key === id); S.user = u; S.sel.msPicker = false; try { localStorage.setItem('mc-user', u.key); } catch (_) {} go(u.role === 'operaio' ? 'op-oggi' : 'home'); },
-    logout: () => { S.user = null; S.clock = { in: null, out: null }; S.trip = null; S.ai = { open: false, msgs: [], typing: false }; try { localStorage.removeItem('mc-user'); } catch (_) {} go('login'); },
+    logout: () => { if (typeof voiceStop === 'function') voiceStop(); clearInterval(S._tt); clearInterval(S._ti); S.user = null; S.clock = { in: null, out: null }; S.trip = null; S.ai = { open: false, msgs: [], typing: false }; try { localStorage.removeItem('mc-user'); } catch (_) {} go('login'); },
     nav: () => { if (ds.tab && TABKEY[id]) S.tab[TABKEY[id]] = ds.tab; go(id); },
     tab: () => { S.tab[ds.key] = id; render(); },
     'plus-toggle': () => { S.plusOpen = !prev.p; render(); },

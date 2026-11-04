@@ -42,6 +42,14 @@ Login: "Accedi con Microsoft 365" apre il selettore account. L'e-mail/password f
 - **Impostazioni**: profilo e notifiche, azienda e parametri (break-even, struttura, indennità… ricalcolo live), **utenti e inviti** (invita via Microsoft o PIN, reinvia, revoca, disattiva), ruoli, **lingua** (IT/DE/FR/EN sul menu) e **tema** (chiaro/scuro/auto), integrazioni, dati (ripristino, export JSON, import PUNTANET).
 - **App operaio** (telefono): Oggi (viaggio GPS "Parto/Sono arrivato", timbratura con geofence, cambio cantiere, vacanze, malattia, scansione materiale), Bollettino (**detta a voce**: ore, viaggio, attività e note compilate in automatico, inviate a responsabile e direttore), Viaggi e km, Messaggi (con voce), Io (conguaglio, vacanze, dati).
 
+## Novità della versione 10 (4 novembre): QA
+
+- **Controllo automatico di tutti i clic**: un crawler ha cliccato ogni bottone di ogni vista, scheda, menu e modale (339 stati, circa 5'500 clic, più cambi di valore nei campi e invii dei moduli) con tutti gli utenti demo: nessun errore JavaScript.
+- **Attività**: le card In ritardo / Oggi / Prossimi 7 giorni ora filtrano davvero l'elenco (clic di nuovo per togliere il filtro), la card attiva è evidenziata, c'è il segmento "Sempre / In ritardo / Oggi / 7 giorni" e il bottone "Azzera filtri".
+- **Layout**: schede che vanno a capo sotto i 1024 px (Impostazioni), scheda account e regole di associazione senza sbordi; nessuna vista ha scorrimento orizzontale a 820, 1024 e 1280 px.
+- **Robustezza**: uscita durante una registrazione vocale senza errore; il logout ferma timer e GPS simulati.
+- Tutti gli indirizzi `#vista/id` ricaricano la pagina giusta (controllati uno per uno).
+
 ## Novità della versione 9 (3 novembre, sera)
 
 - **Modulo Attività** (sidebar, sotto Dashboard, con contatore): in un'unica lista i promemoria manuali (chiamate, riunioni, sopralluoghi, note) e i **controlli automatici** che il gestionale genera dai dati: cantiere sotto il break-even, fattura scaduta, bollettino con anomalia, offerta in attesa di firma, e-mail non lette, documenti in scadenza, capitolato con domande aperte, fatturazione da fare, fattura fornitore senza cantiere. Raggruppate in In ritardo / Oggi / Domani / Questa settimana / Più avanti; filtri Tutte/Mie, Aperte/Fatte, per tipo, ricerca. Ogni riga ha "Apri" (va all'oggetto), "Fatta" (archivia; un controllo automatico riappare se il problema torna), l'orologio (rinvia a domani). Ogni controllo ha un responsabile proposto (Letizia per incassi e documenti, i responsabili di ramo per cantieri e bollettini, Ivo per le firme).

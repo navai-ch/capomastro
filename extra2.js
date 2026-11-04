@@ -200,7 +200,7 @@ function sparkline(vals, color) {
   const W = 64, H = 22; const mx = Math.max(...vals), mn = Math.min(...vals); const pts = vals.map((v, i) => [i / (vals.length - 1) * (W - 4) + 2, H - 3 - ((v - mn) / ((mx - mn) || 1)) * (H - 8)]);
   return `<svg class="spark" viewBox="0 0 ${W} ${H}" aria-hidden="true"><path d="M${pts.map((p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L')}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/><circle cx="${pts[pts.length - 1][0].toFixed(1)}" cy="${pts[pts.length - 1][1].toFixed(1)}" r="2.6" fill="${color}"/></svg>`;
 }
-function kpi2(o) { return `<div class="kpi ${o.act ? 'click' : ''} ${o.spark ? 'has-spark' : ''}" ${o.act ? `data-act="${o.act}" data-id="${esc(o.id || '')}" ${o.tab ? `data-tab="${o.tab}"` : ''}` : ''} ${o.tip ? `data-tip="${esc(o.tip)}"` : ''}><div class="eyebrow">${o.l}</div>${o.spark || ''}<div class="v ${o.tn || ''} ${String(o.v).length > 9 ? 'long' : ''}">${o.v}</div>${o.sub ? `<div class="sub">${o.sub}</div>` : ''}${o.act ? `<span class="go">${I('chevron')}</span>` : ''}</div>`; }
+function kpi2(o) { return `<div class="kpi ${o.act ? 'click' : ''} ${o.on ? 'on' : ''} ${o.spark ? 'has-spark' : ''}" ${o.act ? `data-act="${o.act}" data-id="${esc(o.id || '')}" ${o.tab ? `data-tab="${o.tab}"` : ''}` : ''} ${o.tip ? `data-tip="${esc(o.tip)}"` : ''}><div class="eyebrow">${o.l}</div>${o.spark || ''}<div class="v ${o.tn || ''} ${String(o.v).length > 9 ? 'long' : ''}">${o.v}</div>${o.sub ? `<div class="sub">${o.sub}</div>` : ''}${o.act ? `<span class="go">${I('chevron')}</span>` : ''}</div>`; }
 function chartChfOra(cs) {
   const W = 720, H = 240, pl = 44, pr = 96, pt = 16, pb = 48;
   const max = 110, iw = W - pl - pr, ih = H - pt - pb, bw = iw / Math.max(cs.length, 1);
@@ -382,6 +382,7 @@ function vOpAi() {
     <form class="composer opai" data-act="opai-send" style="padding:0;border:0"><button type="button" class="mic ${listening ? 'on' : ''}" data-act="voice-start" data-id="opai" aria-label="Detta">${listening ? '■' : I('mic')}</button><input id="opai-input" placeholder="${listening ? 'Sto ascoltando…' : 'Scrivi o detta…'}" autocomplete="off"><button class="btn primary" type="submit" aria-label="Invia">${I('send')}</button></form>`);
 }
 function voiceApply(target, text) {
+  if (!S.user) return;
   if (target === 'bol') { const p = parseVoice(text); const F = S.bolForm; const w = me(); const mine = w.ramo === 'G' ? ['Montaggio cartongesso', 'Intonaco', 'Rasatura', 'Controsoffitto', 'Isolamento', 'Preparazione'] : ['Tinteggiatura', 'Smalto', 'Preparazione fondi', 'Stuccatura', 'Tappezzeria', 'Velatura']; if (p.ore) F.ore = p.ore; if (p.viaggio != null) F.viaggio = p.viaggio; const att = p.att.filter((a) => mine.includes(a)); if (att.length) F.att = [...new Set([...F.att, ...att])]; if (p.mat) F.mat = p.mat; F.note = text; F.vocale = true; }
   if (target === 'off') { if (S.modal && S.modal.type === 'offerta-new') S.modal.desc = ((S.modal.desc || '') + ' ' + text).trim(); return; }
   if (target === 'msg') { const inp = document.getElementById('chat-input'); S.sel.msgDraft = text; if (inp) inp.value = text; }

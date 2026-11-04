@@ -51,7 +51,9 @@ function todoCard() {
   const l = attDash(); const n = l.length;
   return `<div class="card todo"><div class="row between"><h3>Da fare oggi</h3><button class="btn sm" data-act="nav" data-id="attivita">Tutte le attività${n ? ' (' + n + ')' : ''}</button></div><div class="actlist">${l.slice(0, 8).map((a) => attRow(a, { compact: true })).join('') || '<p class="muted small">Niente in sospeso: tutto a posto.</p>'}</div>${n > 8 ? `<p class="small muted" style="margin:8px 0 0">e altre ${n - 8} in Attività</p>` : ''}</div>`;
 }
-function attState() { return S.attF || (S.attF = { who: 'tutte', stato: 'aperte', tipo: '', q: '' }); }
+function attState() { return S.attF || (S.attF = { who: 'tutte', stato: 'aperte', tipo: '', q: '', quando: '' }); }
+const ATT_Q = { late: 'In ritardo', today: 'Oggi', week: 'Prossimi 7 giorni' };
+function attQuando(a, q) { const b = attBucket(a); return q === 'late' ? b === 'late' : q === 'today' ? b === 'today' : q === 'week' ? b === 'tomorrow' || b === 'week' : true; }
 function vAttivita() {
   const F = attState(); const w = me(); const all = attAll();
   const open = all.filter((a) => !a.done);
@@ -59,6 +61,7 @@ function vAttivita() {
   let l = all.filter((a) => F.stato === 'tutte' ? true : F.stato === 'fatte' ? a.done : !a.done);
   if (F.who === 'mie') l = l.filter((a) => a.chi === w.id);
   if (F.tipo) l = l.filter((a) => F.tipo === 'auto' ? a.sys : a.tipo === F.tipo);
+  if (F.quando) l = l.filter((a) => a.done || attQuando(a, F.quando));
   if (F.q) { const q = F.q.toLowerCase(); l = l.filter((a) => (a.titolo + ' ' + (a.esito || '') + ' ' + (a.rel ? relName(a.rel) : '')).toLowerCase().includes(q)); }
   const hidden = sysAttivita(true).filter((a) => a.snoozed).length;
   const groups = [['late', 'In ritardo'], ['today', 'Oggi'], ['tomorrow', 'Domani'], ['week', 'Questa settimana'], ['later', 'Più avanti']];
@@ -67,16 +70,16 @@ function vAttivita() {
   const section = (title, list, tone) => list.length ? `<div class="card"><div class="row between"><h3>${title}</h3><span class="pill ${tone || ''}">${list.length}</span></div><div class="actlist">${list.map((a) => attRow(a, { focus: a.id === S.attFocus })).join('')}</div></div>` : '';
   const openL = l.filter((a) => !a.done).sort(attSort); const doneL = l.filter((a) => a.done).sort((a, b) => (b.doneTs || b.data).localeCompare(a.doneTs || a.data)).slice(0, 20);
   return `<div class="pagehead"><div><div class="eyebrow">Gestione</div><h1>Attività</h1><p class="muted">Promemoria, chiamate, riunioni e i controlli che il gestionale genera da solo: cantieri sotto il break-even, fatture scadute, bollettini con anomalie, firme in attesa, documenti in scadenza. Ogni riga apre l'oggetto collegato; "Fatta" la archivia, l'orologio la rinvia a domani.</p></div><div class="row"><button class="btn primary" data-act="new-entity" data-ent="attivita" data-prefill='${esc(JSON.stringify({ tipo: 'Promemoria', data: D.TODAY_ISO, ora: '09:00', chi: w.id }))}'>+ Attività</button></div></div>
-  <div class="kpis">
-    ${kpi2({ l: 'In ritardo', v: late.length, tn: late.length ? 'bad' : 'good', sub: late.length ? 'da chiudere o rinviare' : 'nessuna', act: 'att-f', id: 'stato|aperte', tip: 'Attività aperte con data passata' })}
-    ${kpi2({ l: 'Oggi', v: oggi.length, sub: oggi.filter((a) => a.sys).length + ' automatiche', act: 'att-f', id: 'stato|aperte' })}
-    ${kpi2({ l: 'Prossimi 7 giorni', v: sett.length, sub: sett.filter((a) => a.chi === w.id).length + ' mie', act: 'att-f', id: 'who|mie' })}
-    ${kpi2({ l: 'Controlli automatici', v: auto.length, tn: auto.some((a) => a.prio === 'bad') ? 'bad' : auto.length ? 'warn' : 'good', sub: auto.filter((a) => a.prio === 'bad').length + ' urgenti', act: 'att-f', id: 'tipo|auto', tip: 'Generati dai dati: cantieri, fatture, bollettini, firme, documenti' })}
+  <div class="kpis att-kpis">
+    ${kpi2({ l: 'In ritardo', v: late.length, tn: late.length ? 'bad' : 'good', sub: late.length ? 'da chiudere o rinviare' : 'nessuna', act: 'att-f', id: 'quando|late', tip: 'Mostra solo le attività aperte con data passata', on: F.quando === 'late' })}
+    ${kpi2({ l: 'Oggi', v: oggi.length, sub: oggi.filter((a) => a.sys).length + ' automatiche', act: 'att-f', id: 'quando|today', tip: 'Mostra solo le attività di oggi', on: F.quando === 'today' })}
+    ${kpi2({ l: 'Prossimi 7 giorni', v: sett.length, sub: sett.filter((a) => a.chi === w.id).length + ' mie', act: 'att-f', id: 'quando|week', tip: 'Mostra solo da domani a 7 giorni', on: F.quando === 'week' })}
+    ${kpi2({ l: 'Controlli automatici', v: auto.length, tn: auto.some((a) => a.prio === 'bad') ? 'bad' : auto.length ? 'warn' : 'good', sub: auto.filter((a) => a.prio === 'bad').length + ' urgenti', act: 'att-f', id: 'tipo|auto', tip: 'Generati dai dati: cantieri, fatture, bollettini, firme, documenti', on: F.tipo === 'auto' })}
   </div>
-  <div class="row between" style="flex-wrap:wrap;gap:8px"><div class="row" style="flex-wrap:wrap;gap:8px">${seg('who', [['tutte', 'Tutte'], ['mie', 'Mie']])}${seg('stato', [['aperte', 'Aperte'], ['fatte', 'Fatte'], ['tutte', 'Tutte']])}</div><div class="row"><input type="search" placeholder="Cerca attività…" value="${esc(F.q)}" data-act-change="att-q" style="width:220px;padding:6px 10px;font-size:.85rem">${hidden ? `<button class="btn sm ghost" data-act="att-unsnooze">${hidden} rinviat${hidden === 1 ? 'a' : 'e'} · mostra</button>` : ''}</div></div>
+  <div class="row between" style="flex-wrap:wrap;gap:8px"><div class="row" style="flex-wrap:wrap;gap:8px">${seg('who', [['tutte', 'Tutte'], ['mie', 'Mie']])}${seg('stato', [['aperte', 'Aperte'], ['fatte', 'Fatte'], ['tutte', 'Tutte']])}${seg('quando', [['', 'Sempre'], ['late', 'In ritardo'], ['today', 'Oggi'], ['week', '7 giorni']])}${F.quando || F.tipo || F.q || F.who !== 'tutte' ? `<button class="btn sm ghost" data-act="att-f" data-id="reset|" title="Togli tutti i filtri">${I('x')} Azzera filtri</button>` : ''}</div><div class="row"><input type="search" placeholder="Cerca attività…" value="${esc(F.q)}" data-act-change="att-q" style="width:220px;padding:6px 10px;font-size:.85rem">${hidden ? `<button class="btn sm ghost" data-act="att-unsnooze">${hidden} rinviat${hidden === 1 ? 'a' : 'e'} · mostra</button>` : ''}</div></div>
   <div class="chips">${tipi.map((x) => `<button class="${F.tipo === x[0] ? 'on' : ''}" data-act="att-f" data-id="tipo|${x[0]}">${x[1]}</button>`).join('')}</div>
   ${F.stato === 'fatte' ? section('Fatte di recente', doneL, 'good') : groups.map((g) => section(g[1], openL.filter((a) => attBucket(a) === g[0]), g[0] === 'late' ? 'bad' : g[0] === 'today' ? 'warn' : '')).join('') + (F.stato === 'tutte' ? section('Fatte di recente', doneL, 'good') : '')}
-  ${!openL.length && F.stato !== 'fatte' ? '<div class="card"><p class="muted">Nessuna attività con questi filtri.</p></div>' : ''}`;
+  ${!openL.length && F.stato !== 'fatte' ? `<div class="card"><p class="muted">Nessuna attività ${F.quando ? '<b>' + ATT_Q[F.quando].toLowerCase() + '</b> ' : ''}con questi filtri.</p><button class="btn sm" data-act="att-f" data-id="reset|">Mostra tutte</button></div>` : ''}`;
 }
 
 // ---------- 2. pianificazione con ore per persona ----------
@@ -175,8 +178,8 @@ document.addEventListener('click', (e) => {
   const h = e.target.closest('[data-act]'); if (!h) return; const act = h.dataset.act, id = h.dataset.id; const m = S.modal;
   const findAtt = (i) => DB.attivita.find((x) => x.id === i) || sysAttivita(true).find((x) => x.id === i);
   const H = {
-    'att-focus': () => { S.attFocus = id; Object.assign(attState(), { who: 'tutte', stato: 'aperte', tipo: '', q: '' }); go('attivita'); setTimeout(() => { const el = document.querySelector('.att.focus'); if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 30); return 'skip'; },
-    'att-f': () => { const [k, v] = id.split('|'); const F = attState(); if (k === 'tipo' && v === 'auto') F.stato = 'aperte'; F[k] = v; S.attFocus = null; if (S.view !== 'attivita') { go('attivita'); return 'skip'; } },
+    'att-focus': () => { S.attFocus = id; Object.assign(attState(), { who: 'tutte', stato: 'aperte', tipo: '', q: '', quando: '' }); go('attivita'); setTimeout(() => { const el = document.querySelector('.att.focus'); if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 30); return 'skip'; },
+    'att-f': () => { const [k, v] = id.split('|'); const F = attState(); if (k === 'reset') Object.assign(F, { who: 'tutte', stato: 'aperte', tipo: '', q: '', quando: '' }); else { const toggle = (k === 'quando' || k === 'tipo') && F[k] === v && v; F[k] = toggle ? '' : v; if ((k === 'quando' && v) || (k === 'tipo' && v === 'auto')) F.stato = 'aperte'; } S.attFocus = null; if (S.view !== 'attivita') { go('attivita'); return 'skip'; } },
     'att-done': () => { const a = findAtt(id); if (!a) return; if (a.sys) sysDone()[id] = { done: true, ts: nowISO() }; else a.done = true; toast(a.sys ? 'Controllo archiviato: riappare se il problema torna' : 'Attività completata'); },
     'att-undo': () => { delete sysDone()[id]; toast('Riaperta'); },
     'att-snooze': () => { const a = findAtt(id); if (!a) return; if (a.sys) sysDone()[id] = { snooze: addDays(D.TODAY_ISO, 1) }; else a.data = addDays(a.data > D.TODAY_ISO ? a.data : D.TODAY_ISO, 1); toast('Rinviata a domani'); },

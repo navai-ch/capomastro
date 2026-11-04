@@ -1,6 +1,63 @@
 # Capomastro – valutazione del gestionale e proposte di miglioramento
 
-Stato: versione 7 della demo (3 novembre 2026). Valutazione fatta modulo per modulo guardando cosa serve a un'impresa di pittura e gessatura da 40 persone e cosa si aspetta chi la dirige guardando i margini.
+Stato: versione 10 della demo (4 novembre 2026). Valutazione fatta modulo per modulo guardando cosa serve a un'impresa di pittura e gessatura da 40 persone e cosa si aspetta chi la dirige guardando i margini. La sezione "Obiettivi e persone" (v10) è la lettura più recente; le sezioni per area sotto restano valide e i punti già realizzati sono segnati.
+
+## Obiettivi e persone (valutazione v10, 4 novembre)
+
+### Che cosa deve ottenere un'impresa come MY COLOR
+
+1. **Sapere ogni settimana se un cantiere rende** (break-even 70 CHF/h) e accorgersene prima della fine, non alla fattura finale.
+2. **Ore giuste, in tempo**: bollettini il giorno stesso, conguaglio entro il 5 del mese, nessuna ricostruzione a memoria.
+3. **Offerte rapide e ben prezzate**, con lo storico che insegna; firma e acconti senza rincorrere il cliente.
+4. **Liquidità**: fatturare appena maturato, incassare prima, solleciti senza imbarazzo.
+5. **40 persone al posto giusto** ogni giorno, con pochi viaggi e poche ore morte.
+6. **Zero doppio lavoro** tra PUNTANET, SelectLine, Outlook ed Excel.
+7. **Conformità senza fatica**: CCL, SUVA, permessi, scadenze.
+
+### Chi lo userà e quanto è "digitale"
+
+| Persona | Rapporto con la tecnologia | Cosa deve fare nel gestionale | Cosa non deve vedere |
+|---|---|---|---|
+| **Operai (circa 36)**, molti non di madrelingua italiana | Telefono personale, WhatsApp, foto. Niente tastiera, niente menu. | Arrivo, bollettino (a voce), vedere dove vado domani, chiedere vacanze. Tre tocchi al giorno. | Margini, prezzi, tutto il resto. |
+| **Capi squadra (5–6)** | Come gli operai, ma responsabili di 3–6 persone. | Ore della squadra in un colpo, foto e note di cantiere, segnalare materiale mancante. | Costi orari dei colleghi. |
+| **Stefano e Antonio (rami)** | Spesso in auto o in cantiere, tablet/telefono più del PC. | Approvare bollettini, spostare persone nel piano, vedere i cantieri che scivolano. | Contabilità, impostazioni. |
+| **Letizia (amministrazione)** | Usa Excel, SelectLine, Outlook tutto il giorno: vuole elenchi, azioni in blocco, esportazioni. | Fatture, incassi, solleciti, fatture fornitori, chiusura mese, documenti. | Nulla da nascondere, ma serve velocità. |
+| **Ivo (direzione)** | Vuole risposte, non schermate. Guarda la sera dal telefono. | Dashboard, attività del giorno, margine per cantiere, decidere su offerte e persone. | Dettagli operativi se non sono un problema. |
+
+### Dove la demo è già forte
+
+- Il filo del margine (cantiere → ore → costi → CHF/h → fine stimata) e i controlli automatici in **Attività** rispondono agli obiettivi 1 e 4.
+- La catena offerta → firma → acconti → fattura → sollecito copre il 3 e parte del 4.
+- La pianificazione con ore per persona e la scheda "La mia settimana" coprono il 5.
+- L'app operaio con voce e assistente è nella direzione giusta per il livello tecnico degli operai.
+
+### Dove non basta ancora, in ordine di impatto
+
+1. **L'app operaio chiede ancora troppo.** Il bollettino parte vuoto: cantiere, ore e orario sono già nel piano della settimana, quindi devono arrivare precompilati e l'operaio deve solo confermare o correggere a voce. Obiettivo: "arrivo, conferma, vai a casa" in tre tocchi, con numeri grandi e poche parole.
+2. **Non c'è il capo squadra.** Oggi ogni operaio compila il suo bollettino; nella pratica il capo squadra sa le ore di tutti. Serve il bollettino di squadra (un elenco, un tocco per persona, correzioni rare) e l'approvazione in cantiere, così l'ufficio riceve dati già puliti.
+3. **Lingua.** Portoghese, albanese, spagnolo e tedesco nell'app operaio e nell'assistente vocale, scelte dalla scheda persona. Senza questo l'adozione resta al 60 %.
+4. **Troppe funzioni tutte insieme per l'ufficio.** La demo mostra tutto; il prodotto deve partire in "modalità semplice" per ruolo: Letizia vede amministrazione, Stefano e Antonio il loro ramo, Ivo la direzione; i moduli avanzati (IA, capitolati, magazzino) si attivano quando servono.
+5. **Approvazioni dal telefono per i responsabili di ramo**: coda bollettini e assenze con approvazione a un tocco, piano "per persona" usabile sul tablet con trascinamento.
+6. **Chiusura del mese guidata per Letizia**: bollettini bloccati dopo il 5, conguaglio, esportazione a SelectLine Lohn e creditori, riconciliazione bancaria camt.054, in un percorso unico a passi invece di sei schermate.
+7. **Offline e notifiche vere**: cantine, gallerie e sotterranei sono il pane dei gessatori; la timbratura deve funzionare senza rete e sincronizzarsi dopo.
+8. **Onboarding senza password**: invito via WhatsApp o SMS, PIN o impronta, nessun indirizzo e-mail obbligatorio (molti operai non lo usano).
+
+### Come introdurlo in azienda (non è un problema di software)
+
+- **Pilota di due settimane con una squadra** (un capo, 4 operai, un cantiere), con Stefano o Antonio come sponsor. Misurare: percentuale di bollettini entro le 18:00, minuti di approvazione, errori nel conguaglio.
+- **Formazione di 20 minuti al magazzino** alle 7, con il telefono in mano, e un foglio plastificato con i tre tocchi. Un mese di carta in parallelo, poi stop.
+- **Un referente per lingua** tra gli operai senior.
+- **Metriche di adozione in Impostazioni**: chi usa l'app, chi manda tardi, chi non la apre: Ivo lo vede senza chiedere.
+- **Migrazione da PUNTANET** di cantieri, clienti, prezzi e un mese di storico prima del pilota, così la demo diventa subito "la nostra azienda".
+
+### Cosa aggiungere alla demo prima di venerdì (poche ore ciascuna, in ordine)
+
+1. **Bollettino precompilato dal piano** nell'app operaio, con conferma a un tocco e correzione a voce.
+2. **Bollettino di squadra** per il capo squadra: ore di tutta la squadra in una schermata, invio unico.
+3. **Lingua per operaio** (almeno portoghese e tedesco) nell'app operaio e nell'assistente.
+4. **Modalità semplice per ruolo**: menu ridotto per Letizia, Stefano, Antonio; "mostra tutto" in Impostazioni.
+5. **Chiusura mese guidata** in Contabilità: passi 1–5 con blocco bollettini ed esportazione.
+
 
 ## Cosa funziona già bene
 
@@ -72,13 +129,15 @@ Stato: versione 7 della demo (3 novembre 2026). Valutazione fatta modulo per mod
 - **Previsione di fine lavori e margine finale** dal ritmo reale dei bollettini.
 - **Lettura di capitolati lunghi** con estrazione automatica delle posizioni nel formato NPK e segnalazione delle clausole rischiose (penali, termini di pagamento).
 
-## Cosa farei prima della demo di venerdì (poche ore ciascuna)
+## Cosa farei prima della demo di venerdì (valutazione v7)
 
-1. **Budget per fase e margine "a finire"** sul cantiere: è la domanda che Ivo farà per prima.
-2. **Variazioni come oggetto** con approvazione dal link cliente: chiude il cerchio con la firma digitale già fatta.
-3. **Saldi assenze** nell'app operaio (vacanze, recuperi) e nella scheda persona.
-4. **Documenti con scadenza** per persone e veicoli con avvisi in dashboard.
-5. **Portale cliente** minimo riusando la pagina di firma: avanzamento, foto, fatture.
+*Tutti e cinque i punti sono stati realizzati nella v8 (3 novembre); la pianificazione dettagliata e il modulo Attività nella v9.*
+
+1. ~~Budget per fase e margine "a finire"~~ fatto (v8).
+2. ~~Variazioni come oggetto con approvazione dal portale~~ fatto (v8).
+3. ~~Saldi assenze~~ fatto (v8).
+4. ~~Documenti con scadenza~~ fatto (v8).
+5. ~~Portale cliente~~ fatto (v8).
 
 ## Cosa fa parte di un MVP vero (mesi 1–3)
 

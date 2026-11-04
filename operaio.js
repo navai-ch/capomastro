@@ -55,7 +55,7 @@ const VOICE_SAMPLES = { bol: ['Oggi otto ore e mezza, mezz\'ora di viaggio. Fini
 function voiceStart(target) {
   S.voice = { state: 'listening', text: '', target }; render();
   let done = false;
-  const finish = (text) => { if (done) return; done = true; clearTimeout(S._vt); S.voice = { state: 'done', text, target }; voiceApply(target, text); render(); };
+  const finish = (text) => { if (done) return; done = true; clearTimeout(S._vt); if (!S.user) return; S.voice = { state: 'done', text, target }; voiceApply(target, text); render(); };
   const sample = VOICE_SAMPLES[target][(S._vn = ((S._vn || 0) + 1) % VOICE_SAMPLES[target].length)];
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (SR && window.isSecureContext) {
@@ -65,6 +65,7 @@ function voiceStart(target) {
 }
 function voiceStop() { clearTimeout(S._vt); try { S._rec && S._rec.stop(); } catch (_) {} }
 function voiceApply(target, text) {
+  if (!S.user) return;
   if (target === 'bol') { const p = parseVoice(text); const F = S.bolForm; const w = me(); const mine = w.ramo === 'G' ? ['Montaggio cartongesso', 'Intonaco', 'Rasatura', 'Controsoffitto', 'Isolamento', 'Preparazione'] : ['Tinteggiatura', 'Smalto', 'Preparazione fondi', 'Stuccatura', 'Tappezzeria', 'Velatura']; if (p.ore) F.ore = p.ore; if (p.viaggio != null) F.viaggio = p.viaggio; const att = p.att.filter((a) => mine.includes(a)); if (att.length) F.att = [...new Set([...F.att, ...att])]; if (p.mat) F.mat = p.mat; F.note = text; F.vocale = true; }
   if (target === 'off') { if (S.modal && S.modal.type === 'offerta-new') S.modal.desc = ((S.modal.desc || '') + ' ' + text).trim(); return; }
   if (target === 'msg') { const inp = document.getElementById('chat-input'); S.sel.msgDraft = text; if (inp) inp.value = text; }
