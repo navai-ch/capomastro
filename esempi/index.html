@@ -64,7 +64,9 @@ const S=[
  ['Attività: card Oggi / In ritardo filtrano, "Fatta" archivia, orologio rinvia','Il responsabile è proposto: Letizia per incassi, i rami per cantieri, Ivo per le firme.',[['Attività',L('attivita')]]]]},
 {t:'Villa Bernasconi: un cantiere dentro',min:4,items:[
  ['Redditività: fasi, budget, margine "a finire"','Non il margine di oggi: quello previsto a fine lavori con il ritmo attuale.',[['Cantiere',L('cantiere/MC%2020-26.409')]]],
- ['Costi e fatture → Carica fattura → PDF Suncolor','L\'IA legge fornitore, voci, importo, trova "MC 20-26.421" e propone la categoria. Registra.',[['Tab costi',U+'?u=ivo&t=cant:costi#cantiere/MC%2020-26.409'],['PDF Suncolor','Suncolor_fattura_1201.pdf']]],
+ ['Costi e fatture → Carica fattura → PDF Suncolor','L\'IA legge fornitore e voci, assegna il numero interno F1014 e propone le righe su "MC 20-26.421": sposta una riga su un altro cantiere con "Assegna a", poi "Registra (da vistare)".',[['Tab costi',U+'?u=ivo&t=cant:costi#cantiere/MC%2020-26.409'],['PDF Suncolor','Suncolor_fattura_1201.pdf']]],
+ ['Il visto di Stefano: Contabilità → Fatture fornitori → "Vista" sulla Sto (3 cantieri)','Righe con checkbox e "Assegna le selezionate", quote per cantiere, avviso sconto contrattuale, "Segnala errore al fornitore", "Vista e registra". Poi nel cantiere ogni costo ha "Apri fattura".',[['Fatture fornitori',U+'?u=stefano&t=cont:ff#contabilita']]],
+ ['Materiale: la lista sulla scala, in digitale','Tab Materiale: preparato / caricato, "Stampa lista" (come il foglio attaccato alla scala), kit standard, e "Salva colori e prodotti nel cliente" per i ritocchi futuri.',[['Tab materiale',U+'?u=ivo&t=cant:prep#cantiere/MC%2020-26.421'],['Cliente Bernasconi',L('cliente/K01')]]],
  ['Squadra e ore: costo aziendale per operaio e indennità pranzo CCL','Gessatori forfait 340/mese, pittori 23/giorno oltre 12 km.',[['Tab ore',U+'?u=ivo&t=cant:ore#cantiere/MC%2020-26.409']]],
  ['Variazione in corso d\'opera inviata al cliente dal portale','Dalla pagina dell\'offerta: stati Proposta → Inviata → Approvata dal cliente.',[['Offerta Bernasconi',L('offerta/OF-2026-0217')]]]]},
 {t:'Offerte, firma e acconti',min:5,items:[
@@ -81,11 +83,14 @@ const S=[
  ['Oggi: "Parto" (GPS), "Sono arrivato", Timbra entrata','',[['Oggi',L('op-oggi','operaio')]]],
  ['Bollettino: è già compilato dal piano; microfono e detta la correzione','"otto ore e mezza, mezz\'ora di viaggio, finito il soffitto, manca un secchio di Indeko". Invia.',[['Bollettino',L('op-bol','operaio')]]],
  ['Assistente (in rosso nel footer): "Quante vacanze mi restano?" e "domani sono malato"','Risponde e registra dopo conferma.',[['Assistente',L('op-ai','operaio')]]],
+ ['Rapporto a regia: Bollettino → "+ Rapporto a regia" → compila → "Fai firmare al cliente"','Il cliente firma col dito a tutto schermo. Senza firma non vale (lo dice l\'app). Va a Stefano per il controllo e diventa fattura a regia.',[['Rapporto a regia',L('op-regia','operaio')]]],
+ ['Materiale: dalla schermata Oggi → "caricati sul furgone" → spunta dal telefono','La lista preparata in magazzino, spuntata dal furgone: l\'ufficio la vede aggiornata.',[['Lista dal telefono',L('op-lista','operaio')]]],
  ['Profilo: saldi vacanze e recuperi, chiedi vacanze','',[['Profilo',L('op-mese','operaio')]]],
  ['Scontrino: + in alto → "Fattura fornitore (foto / PDF)" → foto dello scontrino Jumbo','Letto come scontrino, senza cantiere: lo assegni tu. Dal telefono puoi scattarla al volo.',[['Foto scontrino','foto_scontrino_jumbo.jpg'],['Vai',U+'?u=ivo&m=ocr:x#home']]]]},
 {t:'Torna in ufficio: approvazioni',min:2,items:[
  ['Stefano: Bollettini → il bollettino appena inviato con il microfono → Approva','',[['Bollettini',L('bollettini','stefano')]]],
- ['Assenze → richiesta vacanze → Approva; Messaggi → risposta all\'operaio','',[['Bollettini',L('bollettini','stefano')],['Messaggi',L('messaggi','stefano')]]]]},
+ ['Assenze → richiesta vacanze → Approva; Messaggi → risposta all\'operaio','',[['Bollettini',L('bollettini','stefano')],['Messaggi',L('messaggi','stefano')]]],
+ ['Bollettini → Rapporti a regia → il rapporto firmato → "Controllato" → "Crea fattura a regia"','Dal blocchetto cartaceo alla fattura in due clic, con la firma del cliente dentro al documento.',[['Rapporti a regia',U+'?u=stefano&t=bol:regia#bollettini']]]]},
 {t:'Chiusura',min:3,say:'"Tutto quello che vedi è collegabile: SelectLine ha le API, Outlook e Google anche. Con un export da PUNTANET la demo diventa la vostra azienda in una settimana."',items:[
  ['Impostazioni: break-even da 70 a 75, tutto si ricalcola','',[['Azienda e parametri',U+'?u=ivo&t=imp:azienda#impostazioni']]],
  ['Dati: "Importa da PUNTANET" con il CSV di esempio','',[['Dati',U+'?u=ivo&t=imp:dati#impostazioni'],['CSV','Export_PUNTANET_cantieri.csv']]],

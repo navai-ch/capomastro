@@ -42,6 +42,29 @@ Login: "Accedi con Microsoft 365" apre il selettore account. L'e-mail/password f
 - **Impostazioni**: profilo e notifiche, azienda e parametri (break-even, struttura, indennità… ricalcolo live), **utenti e inviti** (invita via Microsoft o PIN, reinvia, revoca, disattiva), ruoli, **lingua** (IT/DE/FR/EN sul menu) e **tema** (chiaro/scuro/auto), integrazioni, dati (ripristino, export JSON, import PUNTANET).
 - **App operaio** (telefono): Oggi (viaggio GPS "Parto/Sono arrivato", timbratura con geofence, cambio cantiere, vacanze, malattia, scansione materiale), Bollettino (**detta a voce**: ore, viaggio, attività e note compilate in automatico, inviate a responsabile e direttore), Viaggi e km, Messaggi (con voce), Io (conguaglio, vacanze, dati).
 
+## Novità della versione 11 (6 novembre, dopo l'incontro con Ivo)
+
+Tre processi reali di MY COLOR ricostruiti nella demo (vedi REQUISITI-IVO.md, sezione 2, punti 1-3). Tutto in `extra6.js`.
+
+**Fattura fornitore riga per riga con visto**
+- Ogni fattura ha un numero interno progressivo cronologico (F996…F1013; la prossima caricata è F1014) e, separato, il numero del fornitore (R1201). Entrambi in Contabilità → Fatture fornitori e nella modale della fattura.
+- Caricamento (+ → Fattura fornitore, o dal cantiere): la lettura propone le righe sul cantiere trovato nel documento; ogni riga ha "Assegna a" (solo cantieri aperti o chiusi da meno di 3 mesi), selezione multipla e "Assegna le selezionate". Si registra "da vistare"; chi è responsabile (Ivo, Stefano, Antonio) può "Registra e vista" subito.
+- Visto: Contabilità → Fatture fornitori → filtro "Da vistare" → "Vista". La Sto 1190 (F1011) è già divisa su 2 cantieri. Avviso sullo sconto contrattuale, "Segnala errore al fornitore" (e-mail precompilata), "Vista e registra". Il visto resta scritto (chi, quando).
+- Nel cantiere (Costi e fatture) ogni costo mostra la quota del cantiere, la pill "quota di CHF X su N cantieri" e "Apri fattura": il link dal costo alla fattura d'origine. Margini e KPI usano le quote. L'export SelectLine genera una riga per cantiere.
+- Attività: le fatture da vistare compaiono come controlli automatici per Stefano e Antonio.
+
+**Rapporto lavori a regia con firma del cliente**
+- App operaio: Bollettino → "+ Rapporto a regia" (o `#op-regia`). Cantiere, descrizione, righe mano d'opera (categoria × numero × ore, tariffe 92/82/68/45 CHF/h), materiale. "Fai firmare al cliente" apre la firma a tutto schermo: il cliente firma col dito, nome, conferma. "Salva senza firma" lo marca "Da firmare" e l'app dice che non vale.
+- Ufficio: Bollettini → Rapporti a regia. Documento stampabile identico al blocchetto (No., del, cantiere, opere, mano d'opera, materiale, firma impresa e firma cliente con data e ora). "Controllato", "Rinvia all'operaio" (messaggio in chat), "Crea fattura a regia" (fattura in bozza con l'importo calcolato, già in anteprima).
+- Esempi: RG-0041 firmato da Bernasconi (da controllare), RG-0038 Hotel Ceresio controllato (da fatturare), RG-0035 senza firma.
+
+**Lista materiale per cantiere e memoria colori nel cliente**
+- Cantiere → tab Materiale: la lista preparata in magazzino con due spunte (preparato, caricato sul furgone), progresso, aggiungi riga, kit standard pittura o gesso, "Stampa lista" (il foglio da attaccare alla scala, con le caselle). Hotel Ceresio ha la lista della foto di San Gottardo.
+- App operaio: in Oggi la card "x/n caricati sul furgone" apre la lista con le spunte grandi: l'ufficio vede subito cosa è salito sul furgone.
+- Cliente → "Materiali e colori usati": prodotto, codice colore, tipo, dove, con quale cantiere. Si compila anche dal cantiere ("Salva colori e prodotti nel cliente"). Bernasconi, Hotel Ceresio, AIL e Residenza Sole hanno già le righe.
+
+**Come mostrarlo in 4 minuti**: Stefano → Contabilità → Fatture fornitori → "Vista" sulla Sto → assegna le righe → "Vista e registra" → Residenza al Lago → Costi e fatture → "Apri fattura". Poi telefono: Bollettino → "+ Rapporto a regia" → firma col dito → ufficio: Bollettini → Rapporti a regia → "Crea fattura a regia". Infine cantiere → Materiale → "Stampa lista".
+
 ## Novità della versione 10 (4 novembre): QA
 
 - **Checklist interattiva della demo** con link alle schermate, cosa dire e i file: https://capomastro-self.vercel.app/esempi/ (le spunte restano salvate nel browser).
