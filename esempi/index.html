@@ -24,17 +24,18 @@ section .body{overflow:hidden}section.closed .body{display:none}
 .item .k{font-weight:700}.item .d{color:var(--ink2);font-size:.95rem;margin-top:2px}.item .d b{color:var(--ink)}
 .item.ok .k{text-decoration:line-through;color:var(--muted)}.item.ok .d{color:var(--muted)}
 .item .a{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.item .a a{font-size:.82rem;padding:5px 10px;border-radius:8px}
+.ans{width:100%;min-height:44px;margin-top:6px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:.92rem;background:var(--bg);color:var(--ink);resize:vertical}.ans:focus{outline:2px solid var(--brand);border-color:var(--brand)}
 .say{background:var(--good-bg);border-left:3px solid var(--good);padding:6px 10px;border-radius:6px;margin-top:6px;font-size:.92rem}
 .files{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:8px 0 6px}
 .file{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.9rem;text-decoration:none;color:var(--ink);display:block}.file:hover{border-color:var(--brand)}.file b{display:block}.file span{color:var(--muted);font-size:.82rem}
 .tag{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--line);color:var(--ink2);margin-left:6px;vertical-align:middle}
 footer{color:var(--muted);font-size:.85rem;margin-top:30px}
 @media (max-width:640px){.item{grid-template-columns:28px 1fr}.item .a{grid-column:2;justify-content:flex-start}}
-@media print{.tools,.item .a,.bar{display:none}section{break-inside:avoid;border:0;padding:0}body{background:#fff;color:#000}section.closed .body{display:block}}
+@media print{.tools,.item .a,.bar{display:none}.ans{border:1px solid #999;min-height:60px}section{break-inside:avoid;border:0;padding:0}body{background:#fff;color:#000}section.closed .body{display:block}}
 </style></head><body><div class="wrap">
-<header><div><h1>Demo <span>Capomastro</span> · checklist</h1><p class="sub">MY COLOR Isella &amp; Foletti SA · venerdì 6 novembre 2026 · ogni voce ha il link alla schermata e cosa dire</p></div><a class="btn primary" href="https://capomastro-self.vercel.app/?u=ivo" target="_blank">Apri la demo (Ivo)</a></header>
+<header><div><h1>Demo <span>Capomastro</span> · checklist</h1><p class="sub">MY COLOR Isella &amp; Foletti SA · venerdì 6 novembre 2026 · percorso della demo, poi le domande per personalizzare il gestionale: scrivi le risposte, restano salvate</p></div><a class="btn primary" href="https://capomastro-self.vercel.app/?u=ivo" target="_blank">Apri la demo (Ivo)</a></header>
 <div class="bar"><i id="bar"></i></div><div class="stat"><span id="stat">0 di 0 fatte</span><span id="time"></span></div>
-<div class="tools"><button onclick="setAll(true)">Segna tutto</button><button onclick="setAll(false)">Azzera</button><button onclick="toggleAll()">Apri/chiudi tutto</button><button onclick="window.print()">Stampa</button><a class="btn" href="https://capomastro-self.vercel.app/?u=operaio" target="_blank">Apri app operaio (Francesco)</a><a class="btn" href="https://capomastro-self.vercel.app/?u=stefano" target="_blank">Apri come Stefano</a></div>
+<div class="tools"><button onclick="setAll(true)">Segna tutto</button><button onclick="setAll(false)">Azzera</button><button onclick="toggleAll()">Apri/chiudi tutto</button><button onclick="window.print()">Stampa</button><button onclick="exportNotes()">Esporta le risposte</button><a class="btn" href="https://capomastro-self.vercel.app/?u=operaio" target="_blank">Apri app operaio (Francesco)</a><a class="btn" href="https://capomastro-self.vercel.app/?u=stefano" target="_blank">Apri come Stefano</a></div>
 <div id="list"></div>
 <section id="files"><h2><span class="n">📎</span>File di esempio da caricare<span class="t">cartella esempi/</span></h2><div class="body"><div class="files" id="fl"></div><p class="sub">Tieni i nomi dei file: la demo riconosce dal nome fattura, capitolato e scontrino e mostra dati coerenti con il documento.</p></div></section>
 <footer>Lo stato delle spunte resta salvato su questo dispositivo. Guida completa in GUIDA-DEMO.md, valutazione e proposte in VALUTAZIONE.md.</footer>
@@ -82,22 +83,52 @@ const S=[
  ['Dati: "Importa da PUNTANET" con il CSV di esempio','',[['Dati',U+'?u=ivo&t=imp:dati#impostazioni'],['CSV','Export_PUNTANET_cantieri.csv']]],
  ['Contabilità: batch SelectLine e fatture fornitori da esportare','',[['Contabilità',L('contabilita')]]],
  ['Da dichiarare come demo: GPS, lettura PDF, firma, e-mail, SelectLine sono simulati; CCL e break-even sono veri','',[]]]},
-{t:'Domande da fare a Ivo',min:5,items:[
- ['Chi compila i bollettini oggi: operaio o capo squadra? Dettatura utile?','',[]],
- ['Quali export dà PUNTANET e cosa tenere dello storico','',[]],
- ['Versione di SelectLine e se hanno già la Toolbox','',[]],
- ['Chi approva ore, km e vacanze: solo Stefano e Antonio o anche Letizia?','',[]],
- ['Operai con PIN o con account Microsoft? Quante lingue servono?','',[]],
- ['Fatture fornitori: PDF via e-mail o cartacee? Chi le registra?','',[]],
- ['Quante offerte a corpo e quante a stima? Capitolati NPK dagli architetti?','',[]]]}
+{t:'Capire come lavorano oggi (chiedi a Ivo di mostrarlo)',min:10,q:1,say:'Non raccontare: fatti aprire PUNTANET e SelectLine sul suo computer e guarda cosa clicca davvero. Dieci minuti qui valgono più di un\'ora di demo.',items:[
+ ['PUNTANET dal vivo: "mi fai vedere come apri una commessa e come registri le ore di ieri?"','Conta i clic, i doppi inserimenti, cosa stampa. Chiedi quali schermate usa ogni giorno e quali mai.',[]],
+ ['Chi inserisce le ore oggi e quando (operaio, capo squadra, Letizia il lunedì?)','Carta, WhatsApp, foglio Excel, telefonata? Quante correzioni al mese e chi le fa.',[]],
+ ['Come timbrano gli operai: badge, app, foglio presenze, niente?','Orario reale di inizio al magazzino o in cantiere, pause, viaggio: cosa conta come ora pagata.',[]],
+ ['Abitudini degli operai: telefono personale o aziendale, lingue, chi non usa app','Quanti hanno WhatsApp, chi fa le foto, chi è il "riferimento" della squadra, resistenze da aspettarsi.',[]],
+ ['Il lunedì mattina: come si decide chi va dove e come lo sanno gli operai','Lavagna, messaggio, telefonata del capo? Quanto spesso cambia il piano durante la settimana.',[]],
+ ['Cosa esporta PUNTANET (Excel, CSV, PDF) e cosa vuole tenere dello storico','Chiedi un export di esempio da portare via: cantieri, clienti, prezzi, ore.',[]],
+ ['Cosa lo fa arrabbiare di più oggi (tre cose) e cosa invece funziona e non va toccato','',[]]]},
+{t:'Contabilità e SelectLine: cosa serve davvero',min:8,q:1,say:'Tre strade, in ordine di costo: 1) nessuna integrazione, solo un file da importare in SelectLine (creditori, debitori, ore per Lohn); 2) API SL.mobile (serve la Toolbox); 3) sviluppiamo noi la parte contabile, come fatto con DomaFlow. Decidere dopo aver visto cosa fa Letizia.',items:[
+ ['SelectLine dal vivo con Letizia: "mi fate vedere come registrate una fattura fornitore e una fattura cliente?"','Moduli usati (creditori, debitori, Lohn, contabilità), versione, chi ha l\'accesso, se hanno la Toolbox o il modulo import.',[]],
+ ['Cosa deve arrivare dal gestionale alla contabilità e con che frequenza','Fatture clienti, fatture fornitori con cantiere, ore e indennità per le paghe, incassi. Giornaliero, settimanale, a fine mese?',[]],
+ ['Basta un import/export di file? (CSV o Excel che SelectLine legge)','Se Letizia già importa file oggi, è la via più veloce e senza licenze. Chiedere quale formato accetta.',[]],
+ ['Oppure teniamo tutto nel gestionale e SelectLine riceve solo il riepilogo per il fiduciario / le paghe','Fatturazione, incassi con camt.054 e QR-fattura fatti da noi, come in DomaFlow. Chiedere chi fa la chiusura annuale e l\'IVA.',[]],
+ ['Banca: come registrano oggi gli incassi (a mano, file camt della banca, e-banking)','Quale banca, se usano già la QR-fattura, quanti solleciti al mese.',[]],
+ ['Paghe: chi le fa (interno su SelectLine Lohn o fiduciario) e che dati servono entro il 5 del mese','Ore, straordinari, indennità pranzo e km, assenze: oggi come arrivano a chi fa le paghe?',[]]]},
+{t:'Personalizzare il gestionale sulle sue esigenze',min:8,q:1,items:[
+ ['Quali numeri guarda ogni settimana e quali vorrebbe vedere la sera dal telefono','CHF/ora per cantiere, ore non fatturate, incassi, offerte in attesa: cosa decide davvero con quei numeri.',[]],
+ ['Come calcola oggi il margine di un cantiere e quando lo scopre (durante o alla fine)','Break-even 70, tariffa 82, costo struttura 20: confermare i valori e se differiscono tra pittura e gessatura.',[]],
+ ['Offerte: a corpo o a stima, chi le scrive, da dove prende i prezzi, quanto tempo per un\'offerta media','Listino NPK degli architetti o listino interno? Quante offerte al mese e tasso di chiusura.',[]],
+ ['Capitolati: arrivano in PDF dagli architetti? Chi li legge e quanto ci mette','',[]],
+ ['Fatturazione: acconti, SAL, fatture a misura; chi decide quando fatturare','Il gestionale può proporre la fattura quando l\'avanzamento supera la soglia: lo vorrebbe automatico?',[]],
+ ['Chi deve vedere cosa: margini e salari solo Ivo? Stefano e Antonio solo il proprio ramo?','',[]],
+ ['Veicoli e km: auto private, furgoni, car pooling: cosa rimborsano e come lo controllano','',[]],
+ ['Magazzino: c\'è, chi lo gestisce, quanto materiale "sparisce" sui cantieri','',[]],
+ ['Documenti e scadenze: permessi, patenti, corsi SUVA: dove sono oggi','',[]],
+ ['Clienti: amministrazioni immobiliari, privati, imprese generali: percentuali e differenze di gestione','Portale cliente utile per le amministrazioni? Firma digitale accettata?',[]],
+ ['Lingue e app: operai con PIN o con account? Portoghese, albanese, spagnolo, tedesco?','',[]],
+ ['Cosa manca nella demo che userebbe da domani, e cosa invece non userebbe mai','',[]]]},
+{t:'Chiudere l\'incontro',min:5,q:1,items:[
+ ['Pilota: una squadra, un cantiere, due settimane. Con chi e quando?','Proporre Stefano o Antonio come sponsor e un capo squadra "amico".',[]],
+ ['Dati per il pilota: export PUNTANET, elenco collaboratori, listino prezzi, un mese di bollettini','',[]],
+ ['Accesso: chiedere un contatto per SelectLine (Letizia o il fiduciario) e uno per PUNTANET','',[]],
+ ['Prossimo appuntamento: data per presentare offerta e piano (MVP 3 mesi)','',[]],
+ ['Lasciare: link alla demo, VALUTAZIONE.md stampata, questa checklist con le risposte esportate','',[]]]}
 ];
 const FILES=[['Suncolor_fattura_1201.pdf','Fattura fornitore','Carica fattura → CHF 3\'635.19, rif. MC 20-26.421'],['Capitolato_Condominio_ViaTrevano.pdf','Capitolato CPN 671, 11 pagine','Carica capitolato → Residenza Trevano, 3 domande aperte'],['foto_scontrino_jumbo.jpg','Scontrino Jumbo','Carica fattura → scontrino senza cantiere'],['Planimetria_Attico_ViaPretorio.png','Planimetria attico, 118 m²','Offerta IA → Dalla planimetria (anche PDF)'],['Planimetria_Attico_ViaPretorio.pdf','Planimetria in PDF','Stessa planimetria per il portale cliente'],['Verbale_sopralluogo_CasaRossi.pdf','Verbale di sopralluogo','Documenti cantiere / portale cliente'],['Export_PUNTANET_cantieri.csv','Export PUNTANET','Impostazioni → Dati → Importa']];
 const KEY='capomastro-demo-checklist'; let st={}; try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
-function render(){ const el=document.getElementById('list'); el.innerHTML=S.map((s,si)=>{ const done=s.items.filter((_,i)=>st[si+'.'+i]).length; const all=done===s.items.length; return `<section class="${all?'done':''} ${st['c'+si]?'closed':''}" data-s="${si}"><h2 onclick="tog(${si})"><span class="n">${all?'✓':si+1}</span>${s.t}<span class="t">${done}/${s.items.length} · ${s.min} min</span></h2><div class="body">${s.say?`<div class="say">${s.say}</div>`:''}${s.items.map((it,i)=>{const k=si+'.'+i; return `<div class="item ${st[k]?'ok':''}"><input type="checkbox" ${st[k]?'checked':''} onchange="chk('${k}',this.checked)"><div><div class="k">${it[0]}</div>${it[1]?`<div class="d">${it[1]}</div>`:''}</div><div class="a">${it[2].map((a)=>`<a class="btn" href="${a[1]}" target="_blank">${a[0]}</a>`).join('')}</div></div>`}).join('')}</div></section>`; }).join('');
- const tot=S.reduce((a,s)=>a+s.items.length,0), done=Object.keys(st).filter((k)=>!k.startsWith('c')&&st[k]).length; document.getElementById('bar').style.width=(100*done/tot)+'%'; document.getElementById('stat').textContent=done+' di '+tot+' fatte'; document.getElementById('time').textContent='circa '+S.reduce((a,s)=>a+s.min,0)+' minuti in tutto';
+function render(){ const el=document.getElementById('list'); el.innerHTML=S.map((s,si)=>{ const done=s.items.filter((_,i)=>st[si+'.'+i]).length; const all=done===s.items.length; return `<section class="${all?'done':''} ${st['c'+si]?'closed':''}" data-s="${si}"><h2 onclick="tog(${si})"><span class="n">${all?'✓':si+1}</span>${s.t}<span class="t">${done}/${s.items.length} · ${s.min} min</span></h2><div class="body">${s.say?`<div class="say">${s.say}</div>`:''}${s.items.map((it,i)=>{const k=si+'.'+i; return `<div class="item ${st[k]?'ok':''}"><input type="checkbox" ${st[k]?'checked':''} onchange="chk('${k}',this.checked)"><div><div class="k">${it[0]}</div>${it[1]?`<div class="d">${it[1]}</div>`:''}${s.q?`<textarea class="ans" placeholder="Risposta di Ivo…" data-k="${k}" oninput="note('${k}',this.value)">${esc(st['n'+k]||'')}</textarea>`:''}</div><div class="a">${it[2].map((a)=>`<a class="btn" href="${a[1]}" target="_blank">${a[0]}</a>`).join('')}</div></div>`}).join('')}</div></section>`; }).join('');
+ const tot=S.reduce((a,s)=>a+s.items.length,0), done=countDone(); document.getElementById('bar').style.width=(100*done/tot)+'%'; document.getElementById('stat').textContent=done+' di '+tot+' fatte'; document.getElementById('time').textContent='circa '+S.reduce((a,s)=>a+s.min,0)+' minuti in tutto';
  document.getElementById('fl').innerHTML=FILES.map((f)=>`<a class="file" href="${f[0]}" target="_blank"><b>${f[1]}</b>${f[0]}<br><span>${f[2]}</span></a>`).join(''); }
-function chk(k,v){ st[k]=v; save(); render(); } function tog(si){ st['c'+si]=!st['c'+si]; save(); render(); }
+function chk(k,v){ st[k]=v; save(); render(); }
+function note(k,v){ st['n'+k]=v; save(); const tot=countDone(); }
+const esc=(x)=>String(x).replace(/[&<>"]/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function countDone(){ return Object.keys(st).filter((k)=>/^\d+\.\d+$/.test(k)&&st[k]).length; }
+function exportNotes(){ const lines=['Demo Capomastro, MY COLOR, '+new Date().toLocaleDateString('it-CH'),'']; S.forEach((s,si)=>{ const rows=s.items.map((it,i)=>{ const k=si+'.'+i; const n=(st['n'+k]||'').trim(); return (st[k]?'[x] ':'[ ] ')+it[0]+(n?'\n    → '+n.replace(/\n/g,'\n      '):''); }); lines.push('## '+s.t,...rows,''); }); const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='demo-mycolor-risposte.txt'; a.click(); } function tog(si){ st['c'+si]=!st['c'+si]; save(); render(); }
 function setAll(v){ S.forEach((s,si)=>s.items.forEach((_,i)=>{ st[si+'.'+i]=v; })); save(); render(); }
 function toggleAll(){ const anyOpen=S.some((_,si)=>!st['c'+si]); S.forEach((_,si)=>{ st['c'+si]=anyOpen; }); save(); render(); }
 render();
