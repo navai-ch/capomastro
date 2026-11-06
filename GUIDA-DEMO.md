@@ -44,6 +44,8 @@ Login: "Accedi con Microsoft 365" apre il selettore account. L'e-mail/password f
 
 ## Novità della versione 10 (4 novembre): QA
 
+- **App operaio, Bollettino**: cantiere e ore arrivano precompilati dal piano della settimana (riquadro "Dal piano della settimana"); l'operaio controlla, sceglie le attività e invia, oppure corregge a voce.
+
 - **Controllo automatico di tutti i clic**: un crawler ha cliccato ogni bottone di ogni vista, scheda, menu e modale (339 stati, circa 5'500 clic, più cambi di valore nei campi e invii dei moduli) con tutti gli utenti demo: nessun errore JavaScript.
 - **Attività**: le card In ritardo / Oggi / Prossimi 7 giorni ora filtrano davvero l'elenco (clic di nuovo per togliere il filtro), la card attiva è evidenziata, c'è il segmento "Sempre / In ritardo / Oggi / 7 giorni" e il bottone "Azzera filtri".
 - **Layout**: schede che vanno a capo sotto i 1024 px (Impostazioni), scheda account e regole di associazione senza sbordi; nessuna vista ha scorrimento orizzontale a 820, 1024 e 1280 px.

@@ -206,3 +206,12 @@ document.addEventListener('submit', (e) => {
   days.forEach((d) => { if (assenzaDi(wid, d)) return; let arr = planOf(wid, d).map((x) => ({ ...x })).filter((x) => x.c !== m.cant); if (ore >= ORE_G()) arr = []; arr.push({ c: m.cant, ore, inizio, nota: '' }); setPlan(wid, d, arr); n++; });
   toast(worker(wid).nome + ' pianificato su ' + cant(m.cant).nome + ' (' + n + ' giorn' + (n === 1 ? 'o' : 'i') + ', ' + n1(ore) + ' h)'); render();
 });
+
+// v10.1: bollettino dell'operaio precompilato dal piano della settimana (l'operaio conferma o corregge)
+function opBolPrefill() {
+  const w = me(); if (!w || typeof planOf !== 'function') return '';
+  const p = planOf(w.id, D.TODAY_ISO); if (!p.length) return '';
+  const F = S.bolForm; if (!F._fromPlan) { F._fromPlan = true; F.cantiere = p[0].c; if (!F._fromClock) F.ore = sumOre(p); }
+  const txt = p.map((x) => `<b>${esc(cant(x.c).nome)}</b> · ${n1(x.ore)} h dalle ${x.inizio}`).join('<br>');
+  return `<div class="card" style="padding:10px 12px;border-left:3px solid var(--brand)"><div class="small muted">${I('calendar')} Dal piano della settimana</div><div style="margin:2px 0">${txt}</div><div class="small muted">Se è giusto, controlla le attività e invia. Altrimenti correggi qui o a voce.</div></div>`;
+}
