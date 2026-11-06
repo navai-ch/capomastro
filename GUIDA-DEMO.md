@@ -44,6 +44,8 @@ Login: "Accedi con Microsoft 365" apre il selettore account. L'e-mail/password f
 
 ## Novità della versione 10 (4 novembre): QA
 
+- **Checklist interattiva della demo** con link alle schermate, cosa dire e i file: https://capomastro-self.vercel.app/esempi/ (le spunte restano salvate nel browser).
+- **Materiale di esempio in `esempi/`**: fattura Suncolor (PDF), capitolato Residenza Trevano CPN 671 di 11 pagine (PDF), scontrino Jumbo (JPG), planimetria attico 118 m² (PNG e PDF), verbale di sopralluogo Casa Rossi (PDF), export PUNTANET (CSV). Caricando il capitolato in "Carica capitolato" l'analisi mostra riassunto, posizioni e domande coerenti con il PDF (pagine citate giuste).
 - **Fattura fornitore vera da caricare**: `esempi/Suncolor_fattura_1201.pdf` (anche su https://capomastro-self.vercel.app/esempi/Suncolor_fattura_1201.pdf). Caricandola in "Carica fattura" l'OCR demo riconosce dal nome del file il fornitore e mostra i dati coerenti con il PDF (3'635.19 CHF, rif. MC 20-26.421 Hotel Ceresio). Una foto (.jpg) viene letta come scontrino Jumbo. Il fornitore si chiama Suncolor SA (corretto da Sumcolor).
 - **App operaio, Bollettino**: cantiere e ore arrivano precompilati dal piano della settimana (riquadro "Dal piano della settimana"); l'operaio controlla, sceglie le attività e invia, oppure corregge a voce.
 

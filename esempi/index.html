@@ -1,0 +1,104 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Checklist demo Capomastro</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#CD2527;--brand-dark:#a61d1f;--ink:#1b1f2a;--ink2:#4b5160;--muted:#7c8290;--line:#e4e6eb;--bg:#f5f6f8;--surface:#fff;--good:#1f8a4c;--good-bg:#e6f4ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#f0f1f4;--ink2:#c3c7d1;--muted:#8d93a1;--line:#2b2f3a;--bg:#13151c;--surface:#1c1f29;--good-bg:#173424}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,sans-serif;font-size:16px;line-height:1.45}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 80px}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:8px}
+h1{font-family:Raleway,sans-serif;font-size:1.8rem;margin:0;letter-spacing:-.01em}h1 span{color:var(--brand)}
+.sub{color:var(--muted);margin:2px 0 0}
+.bar{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin:14px 0 6px}.bar i{display:block;height:100%;background:var(--brand);width:0;transition:width .3s}
+.stat{display:flex;justify-content:space-between;font-size:.9rem;color:var(--ink2)}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 22px}
+button,.btn{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 14px;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+button:hover,.btn:hover{border-color:var(--brand);color:var(--brand)}.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}.btn.primary:hover{background:var(--brand-dark);color:#fff}
+section{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:6px 18px 10px;margin-bottom:14px}
+section h2{font-family:Raleway,sans-serif;font-size:1.05rem;margin:12px 0 4px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+section h2 .n{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font-size:.85rem;flex:none}
+section h2 .t{color:var(--muted);font-weight:400;font-size:.85rem;margin-left:auto;white-space:nowrap}
+section.done h2 .n{background:var(--good)}
+section .body{overflow:hidden}section.closed .body{display:none}
+.item{display:grid;grid-template-columns:28px 1fr auto;gap:10px;padding:10px 0;border-top:1px solid var(--line);align-items:start}
+.item input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--brand);cursor:pointer}
+.item .k{font-weight:700}.item .d{color:var(--ink2);font-size:.95rem;margin-top:2px}.item .d b{color:var(--ink)}
+.item.ok .k{text-decoration:line-through;color:var(--muted)}.item.ok .d{color:var(--muted)}
+.item .a{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.item .a a{font-size:.82rem;padding:5px 10px;border-radius:8px}
+.say{background:var(--good-bg);border-left:3px solid var(--good);padding:6px 10px;border-radius:6px;margin-top:6px;font-size:.92rem}
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:8px 0 6px}
+.file{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.9rem;text-decoration:none;color:var(--ink);display:block}.file:hover{border-color:var(--brand)}.file b{display:block}.file span{color:var(--muted);font-size:.82rem}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--line);color:var(--ink2);margin-left:6px;vertical-align:middle}
+footer{color:var(--muted);font-size:.85rem;margin-top:30px}
+@media (max-width:640px){.item{grid-template-columns:28px 1fr}.item .a{grid-column:2;justify-content:flex-start}}
+@media print{.tools,.item .a,.bar{display:none}section{break-inside:avoid;border:0;padding:0}body{background:#fff;color:#000}section.closed .body{display:block}}
+</style></head><body><div class="wrap">
+<header><div><h1>Demo <span>Capomastro</span> · checklist</h1><p class="sub">MY COLOR Isella &amp; Foletti SA · venerdì 6 novembre 2026 · ogni voce ha il link alla schermata e cosa dire</p></div><a class="btn primary" href="https://capomastro-self.vercel.app/?u=ivo" target="_blank">Apri la demo (Ivo)</a></header>
+<div class="bar"><i id="bar"></i></div><div class="stat"><span id="stat">0 di 0 fatte</span><span id="time"></span></div>
+<div class="tools"><button onclick="setAll(true)">Segna tutto</button><button onclick="setAll(false)">Azzera</button><button onclick="toggleAll()">Apri/chiudi tutto</button><button onclick="window.print()">Stampa</button><a class="btn" href="https://capomastro-self.vercel.app/?u=operaio" target="_blank">Apri app operaio (Francesco)</a><a class="btn" href="https://capomastro-self.vercel.app/?u=stefano" target="_blank">Apri come Stefano</a></div>
+<div id="list"></div>
+<section id="files"><h2><span class="n">📎</span>File di esempio da caricare<span class="t">cartella esempi/</span></h2><div class="body"><div class="files" id="fl"></div><p class="sub">Tieni i nomi dei file: la demo riconosce dal nome fattura, capitolato e scontrino e mostra dati coerenti con il documento.</p></div></section>
+<footer>Lo stato delle spunte resta salvato su questo dispositivo. Guida completa in GUIDA-DEMO.md, valutazione e proposte in VALUTAZIONE.md.</footer>
+</div>
+<script>
+const U='https://capomastro-self.vercel.app/';
+const L=(u,user)=>U+'?u='+(user||'ivo')+'#'+u;
+const S=[
+{t:'Prima di iniziare',min:5,items:[
+ ['Finestra in incognito o "Ripristina dati demo"','Così i dati sono quelli puliti. Impostazioni → Dati → Ripristina.',[['Impostazioni',L('impostazioni')]]],
+ ['Due schede: Ivo e Stefano, telefono con app operaio','Stefano serve per approvare il bollettino; il telefono per la dettatura.',[['Stefano',U+'?u=stefano'],['Operaio',U+'?u=operaio']]],
+ ['Microfono provato una volta','Se il browser lo nega, la demo usa una frase di esempio: va bene lo stesso.',[['Bollettino operaio',L('op-bol','operaio')]]],
+ ['Tema chiaro, zoom 90 %, notifiche del Mac spente','',[]],
+ ['File di esempio scaricati sul computer e sul telefono','Fattura, capitolato, scontrino, planimetria, verbale, CSV: vedi in fondo.',[]]]},
+{t:'Apertura: il margine',min:3,say:'"Oggi le informazioni sono in quattro posti: PUNTANET, SelectLine, Outlook ed Excel. Qui ce n\'è uno solo e parte dalla domanda che ti fai ogni settimana: questo cantiere rende?"',items:[
+ ['Dashboard: CHF/ora per cantiere contro break-even 70 e tariffa 82','Scuola Canavée è rossa (49.8): clicca la barra per aprirla.',[['Dashboard',L('home')]]],
+ ['"Da fare oggi": i controlli che il gestionale fa da solo','Cantiere sotto break-even, fattura scaduta, bollettino anomalo, firma in attesa, documenti in scadenza. Clicca una riga: va in Attività con la riga evidenziata.',[['Attività',L('attivita')]]],
+ ['Attività: card Oggi / In ritardo filtrano, "Fatta" archivia, orologio rinvia','Il responsabile è proposto: Letizia per incassi, i rami per cantieri, Ivo per le firme.',[['Attività',L('attivita')]]]]},
+{t:'Villa Bernasconi: un cantiere dentro',min:4,items:[
+ ['Redditività: fasi, budget, margine "a finire"','Non il margine di oggi: quello previsto a fine lavori con il ritmo attuale.',[['Cantiere',L('cantiere/MC%2020-26.409')]]],
+ ['Costi e fatture → Carica fattura → PDF Suncolor','L\'IA legge fornitore, voci, importo, trova "MC 20-26.421" e propone la categoria. Registra.',[['Tab costi',U+'?u=ivo&t=cant:costi#cantiere/MC%2020-26.409'],['PDF Suncolor','Suncolor_fattura_1201.pdf']]],
+ ['Squadra e ore: costo aziendale per operaio e indennità pranzo CCL','Gessatori forfait 340/mese, pittori 23/giorno oltre 12 km.',[['Tab ore',U+'?u=ivo&t=cant:ore#cantiere/MC%2020-26.409']]],
+ ['Variazione in corso d\'opera inviata al cliente dal portale','Dalla pagina dell\'offerta: stati Proposta → Inviata → Approvata dal cliente.',[['Offerta Bernasconi',L('offerta/OF-2026-0217')]]]]},
+{t:'Offerte, firma e acconti',min:5,items:[
+ ['Pipeline kanban: trascina "Bernasconi: garage" da Sopralluogo a Offerta in bozza','',[['Offerte',L('commerciale')]]],
+ ['Offerta con IA dal listino: esempio "Villa + facciata" → Genera','Mostra il ragionamento: posizioni NPK, prezzi medi dallo storico, quantità da controllare.',[['Nuova offerta',U+'?u=ivo&m=offerta-new:x#commerciale'],['Planimetria',  'Planimetria_Attico_ViaPretorio.png']]],
+ ['Casa Rossi OF-2026-0258: "Apri come cliente" → andrea.rossi@gmail.com → togli la resina → firma con il dito','Tornando in ufficio: firma registrata, cantiere in pianificazione, prima rata pronta.',[['Offerta Rossi',L('offerta/OF-2026-0258')],['Verbale sopralluogo','Verbale_sopralluogo_CasaRossi.pdf']]],
+ ['Fattura dalla rata "A fine lavori" di Villa Bernasconi: QR-fattura pronta','',[['Offerta Bernasconi',L('offerta/OF-2026-0217')]]],
+ ['Capitolati: "+ Carica capitolato" con il PDF Residenza Trevano','In 2 secondi: riassunto, posizioni CPN 671, 3 domande aperte da mandare al cliente. Chat: "Chi fornisce i ponteggi?"',[['Capitolati',U+'?u=ivo&t=comm:cap#commerciale'],['PDF capitolato','Capitolato_Condominio_ViaTrevano.pdf']]]]},
+{t:'Pianificazione',min:3,items:[
+ ['Per cantiere: ore per persona, giornate divise, fine stimata, "manca gessatore"','Roberto Sala fa 4+4 h martedì e giovedì; chip tratteggiato = mezza giornata, arancione = straordinario.',[['Pianificazione',L('pianificazione')]]],
+ ['Per persona: totale settimana (piena, straordinari, ore libere), clic sulla casella per cambiare','',[['Pianificazione',L('pianificazione')]]],
+ ['"Invia alle squadre": ogni operaio riceve la sua settimana sull\'app','Poi mostrala nell\'app operaio, scheda Oggi → La mia settimana.',[['App operaio',L('op-oggi','operaio')]]]]},
+{t:'App operaio (sul telefono)',min:4,say:'"L\'operaio fa tre tocchi: arrivo, conferma, vai. Il resto lo fa il piano."',items:[
+ ['Oggi: "Parto" (GPS), "Sono arrivato", Timbra entrata','',[['Oggi',L('op-oggi','operaio')]]],
+ ['Bollettino: è già compilato dal piano; microfono e detta la correzione','"otto ore e mezza, mezz\'ora di viaggio, finito il soffitto, manca un secchio di Indeko". Invia.',[['Bollettino',L('op-bol','operaio')]]],
+ ['Assistente (in rosso nel footer): "Quante vacanze mi restano?" e "domani sono malato"','Risponde e registra dopo conferma.',[['Assistente',L('op-ai','operaio')]]],
+ ['Profilo: saldi vacanze e recuperi, chiedi vacanze','',[['Profilo',L('op-mese','operaio')]]],
+ ['Scontrino: Carica fattura con la foto dello scontrino Jumbo','Letto come scontrino, senza cantiere: lo assegni tu.',[['Foto scontrino','foto_scontrino_jumbo.jpg']]]]},
+{t:'Torna in ufficio: approvazioni',min:2,items:[
+ ['Stefano: Bollettini → il bollettino appena inviato con il microfono → Approva','',[['Bollettini',L('bollettini','stefano')]]],
+ ['Assenze → richiesta vacanze → Approva; Messaggi → risposta all\'operaio','',[['Bollettini',L('bollettini','stefano')],['Messaggi',L('messaggi','stefano')]]]]},
+{t:'Chiusura',min:3,say:'"Tutto quello che vedi è collegabile: SelectLine ha le API, Outlook e Google anche. Con un export da PUNTANET la demo diventa la vostra azienda in una settimana."',items:[
+ ['Impostazioni: break-even da 70 a 75, tutto si ricalcola','',[['Azienda e parametri',U+'?u=ivo&t=imp:azienda#impostazioni']]],
+ ['Dati: "Importa da PUNTANET" con il CSV di esempio','',[['Dati',U+'?u=ivo&t=imp:dati#impostazioni'],['CSV','Export_PUNTANET_cantieri.csv']]],
+ ['Contabilità: batch SelectLine e fatture fornitori da esportare','',[['Contabilità',L('contabilita')]]],
+ ['Da dichiarare come demo: GPS, lettura PDF, firma, e-mail, SelectLine sono simulati; CCL e break-even sono veri','',[]]]},
+{t:'Domande da fare a Ivo',min:5,items:[
+ ['Chi compila i bollettini oggi: operaio o capo squadra? Dettatura utile?','',[]],
+ ['Quali export dà PUNTANET e cosa tenere dello storico','',[]],
+ ['Versione di SelectLine e se hanno già la Toolbox','',[]],
+ ['Chi approva ore, km e vacanze: solo Stefano e Antonio o anche Letizia?','',[]],
+ ['Operai con PIN o con account Microsoft? Quante lingue servono?','',[]],
+ ['Fatture fornitori: PDF via e-mail o cartacee? Chi le registra?','',[]],
+ ['Quante offerte a corpo e quante a stima? Capitolati NPK dagli architetti?','',[]]]}
+];
+const FILES=[['Suncolor_fattura_1201.pdf','Fattura fornitore','Carica fattura → CHF 3\'635.19, rif. MC 20-26.421'],['Capitolato_Condominio_ViaTrevano.pdf','Capitolato CPN 671, 11 pagine','Carica capitolato → Residenza Trevano, 3 domande aperte'],['foto_scontrino_jumbo.jpg','Scontrino Jumbo','Carica fattura → scontrino senza cantiere'],['Planimetria_Attico_ViaPretorio.png','Planimetria attico, 118 m²','Offerta IA → Dalla planimetria (anche PDF)'],['Planimetria_Attico_ViaPretorio.pdf','Planimetria in PDF','Stessa planimetria per il portale cliente'],['Verbale_sopralluogo_CasaRossi.pdf','Verbale di sopralluogo','Documenti cantiere / portale cliente'],['Export_PUNTANET_cantieri.csv','Export PUNTANET','Impostazioni → Dati → Importa']];
+const KEY='capomastro-demo-checklist'; let st={}; try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+function render(){ const el=document.getElementById('list'); el.innerHTML=S.map((s,si)=>{ const done=s.items.filter((_,i)=>st[si+'.'+i]).length; const all=done===s.items.length; return `<section class="${all?'done':''} ${st['c'+si]?'closed':''}" data-s="${si}"><h2 onclick="tog(${si})"><span class="n">${all?'✓':si+1}</span>${s.t}<span class="t">${done}/${s.items.length} · ${s.min} min</span></h2><div class="body">${s.say?`<div class="say">${s.say}</div>`:''}${s.items.map((it,i)=>{const k=si+'.'+i; return `<div class="item ${st[k]?'ok':''}"><input type="checkbox" ${st[k]?'checked':''} onchange="chk('${k}',this.checked)"><div><div class="k">${it[0]}</div>${it[1]?`<div class="d">${it[1]}</div>`:''}</div><div class="a">${it[2].map((a)=>`<a class="btn" href="${a[1]}" target="_blank">${a[0]}</a>`).join('')}</div></div>`}).join('')}</div></section>`; }).join('');
+ const tot=S.reduce((a,s)=>a+s.items.length,0), done=Object.keys(st).filter((k)=>!k.startsWith('c')&&st[k]).length; document.getElementById('bar').style.width=(100*done/tot)+'%'; document.getElementById('stat').textContent=done+' di '+tot+' fatte'; document.getElementById('time').textContent='circa '+S.reduce((a,s)=>a+s.min,0)+' minuti in tutto';
+ document.getElementById('fl').innerHTML=FILES.map((f)=>`<a class="file" href="${f[0]}" target="_blank"><b>${f[1]}</b>${f[0]}<br><span>${f[2]}</span></a>`).join(''); }
+function chk(k,v){ st[k]=v; save(); render(); } function tog(si){ st['c'+si]=!st['c'+si]; save(); render(); }
+function setAll(v){ S.forEach((s,si)=>s.items.forEach((_,i)=>{ st[si+'.'+i]=v; })); save(); render(); }
+function toggleAll(){ const anyOpen=S.some((_,si)=>!st['c'+si]); S.forEach((_,si)=>{ st['c'+si]=anyOpen; }); save(); render(); }
+render();
+</script></body></html>
