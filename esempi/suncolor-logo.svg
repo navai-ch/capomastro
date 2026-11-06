@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" width="420" height="300">
+  <polygon points="130,185 215,105 265,105 180,185" fill="#4A74B8"/>
+  <polygon points="185,185 270,105 320,105 235,185" fill="#F2E218"/>
+  <polygon points="240,185 325,105 375,105 290,185" fill="#C8102E"/>
+  <text x="210" y="272" text-anchor="middle" font-family="Nunito, 'Avenir Next', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="96" fill="#4A74B8" letter-spacing="-2">suncolor</text>
+</svg>

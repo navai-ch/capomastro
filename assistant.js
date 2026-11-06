@@ -1,7 +1,7 @@
 /* MyColor Gestionale – assistente IA (pannello in basso a destra): domande sui dati e azioni (e-mail, contatti, promemoria) */
 
 function aiPanel() {
-  const A = S.ai; if (!S.user || S.view === 'firma') return '';
+  const A = S.ai; if (!S.user || S.view === 'firma' || S.user.role === 'operaio') return '';
   const isOp = S.user.role === 'operaio';
   const sugg = isOp ? ['Quante ore ho fatto questa settimana?', 'Dove lavoro lunedì?', 'Quante vacanze mi restano?', 'Scrivi a Stefano che domani arrivo alle 7'] : ['Qual è il margine di Villa Bernasconi?', 'Quali cantieri sono sotto break-even?', 'Quanti bollettini da approvare?', 'Scrivi a Bernasconi per la variazione cantina', 'Crea contatto Rossi Impianti Sagl', 'Fatture scadute?', 'Chi lavora a Mendrisio lunedì?', 'Cosa c\'è sotto scorta?'];
   return `${A.open ? `<div class="ai-panel"><div class="hd"><div><div class="b">${I('sparkles')} Assistente MyColor</div><div class="small muted">Risponde sui dati del gestionale e fa azioni per te</div></div><div class="row nowrap"><button class="btn sm ghost" data-act="ai-clear">Pulisci</button><button class="btn sm" data-act="ai-toggle">${I('x')}</button></div></div>

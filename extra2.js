@@ -350,6 +350,7 @@ function opAiInterpret(text) {
   else if (/manca|mancano|servono|serve|ordina/.test(t) && !acts.length) { acts.push({ k: 'msg', to: resp, testo: 'Materiale: ' + text, label: `Richiesta materiale a ${resp.nome.split(' ')[0]}: "${text}"` }); }
   return finish();
   function finish() {
+    if (!acts.length && typeof aiAnswer === 'function') { try { const generic = aiAnswer('zqzq zqzq').html; const r = aiAnswer(text); if (r && r.html && r.html !== generic) { if (r.then) setTimeout(r.then, 0); return { html: r.html, actions: [] }; } } catch (_) {} }
     if (!acts.length) return { html: `Non ho capito cosa registrare. Puoi dirmi per esempio: <i>"entrato alle 7"</i>, <i>"otto ore a ${esc(c.nome)}, mezz'ora di viaggio"</i>, <i>"domani sono malato"</i>, <i>"vacanze dal 22 al 26 dicembre"</i> oppure <i>"di' a ${esc(resp.nome.split(' ')[0])} che arrivo alle 8"</i>.`, actions: [] };
     return { html: `Ho capito così${notes.length ? ' (' + esc(notes.join('; ')) + ')' : ''}. Confermi?`, actions: acts };
   }
