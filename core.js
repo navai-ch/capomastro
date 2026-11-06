@@ -405,7 +405,8 @@ function ocrModal(m) {
     <div class="eyebrow">Oppure prova con una fattura di esempio</div><div class="stack">${D.OCR_SAMPLES.map((s, i) => `<button class="listrow click" data-act="ocr-sample" data-id="${i}" style="border:0;background:none;width:100%;text-align:left;font:inherit;color:inherit"><span>${I('file')} ${esc(s.file)}<br><span class="small muted">${esc(s.fornitore)} · ${esc(s.riferimento)}</span></span><span class="b num">${chf(s.voci.reduce((a, v) => a + v[1] * v[2], 0) * (1 + s.iva / 100), 2)}</span></button>`).join('')}</div>`;
 }
 function ocrStart(file, sampleIdx) {
-  const s = D.OCR_SAMPLES[sampleIdx != null ? sampleIdx : (S._ocrN = ((S._ocrN || 0) + 1) % D.OCR_SAMPLES.length)];
+  const byName = file ? D.OCR_SAMPLES.findIndex((x) => { const f = String(file).toLowerCase(); return f.includes(x.fornitore.split(' ')[0].toLowerCase()) || (/\.(jpe?g|png|heic)$/i.test(f) && x.file.endsWith('.jpg')); }) : -1;
+  const s = D.OCR_SAMPLES[sampleIdx != null ? sampleIdx : byName >= 0 ? byName : (S._ocrN = ((S._ocrN || 0) + 1) % D.OCR_SAMPLES.length)];
   S.modal = { type: 'ocr', step: 'scan', file: file || s.file, data: clone(s), cantiere: S.modal && S.modal.cantiere }; render();
   setTimeout(() => { if (S.modal && S.modal.type === 'ocr') { if (S.modal.cantiere && !S.modal.data.cantiere) S.modal.data.cantiere = S.modal.cantiere; S.modal.step = 'result'; render(); } }, 1500);
 }
