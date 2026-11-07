@@ -42,6 +42,24 @@ Login: "Accedi con Microsoft 365" apre il selettore account. L'e-mail/password f
 - **Impostazioni**: profilo e notifiche, azienda e parametri (break-even, struttura, indennità… ricalcolo live), **utenti e inviti** (invita via Microsoft o PIN, reinvia, revoca, disattiva), ruoli, **lingua** (IT/DE/FR/EN sul menu) e **tema** (chiaro/scuro/auto), integrazioni, dati (ripristino, export JSON, import PUNTANET).
 - **App operaio** (telefono): Oggi (viaggio GPS "Parto/Sono arrivato", timbratura con geofence, cambio cantiere, vacanze, malattia, scansione materiale), Bollettino (**detta a voce**: ore, viaggio, attività e note compilate in automatico, inviate a responsabile e direttore), Viaggi e km, Messaggi (con voce), Io (conguaglio, vacanze, dati).
 
+## Novità della versione 13 (7 novembre): capo squadra, foto prima, file copertina, smistamento, QR
+
+Tutto in `extra8.js`. Risponde ai punti di REQUISITI-IVO.md rimasti (1.2 agenzie e registro, 1.4 file copertina e SUVA, 1.5 smistamento e foto prima) e ai due gap principali di VALUTAZIONE.md (capo squadra, onboarding senza password).
+
+**Bollettino della squadra compilato dal capo** (nuovo accesso "Andrea Mazzola, capo operaio pittura": https://capomastro-self.vercel.app/?u=capo). Nell'app, Bollettino → card "Capo squadra" → "Per la squadra": l'elenco di chi lavora con lui oggi su Villa Bernasconi (gli assenti registrati sono esclusi), ore per tutti con un tocco (7 / 8 / 8.5 / 9) o riga per riga, attività, nota, "Invia 5 bollettini". Ogni operaio riceve il suo bollettino (può correggerlo), l'ufficio vede "capo squadra Andrea Mazzola" nel dettaglio e riceve una sola notifica. È la risposta per chi non vuole o non può usare l'app ogni giorno.
+
+**Foto "prima"**: Hotel Ceresio non ha foto "prima". Nell'app (Oggi e Bollettino) chi è su quel cantiere vede l'avviso con "Scatta ora"; le foto finiscono in SharePoint/Cantieri e la notifica arriva a Stefano. In Attività c'è il controllo automatico "nessuna foto prima dall'inizio dei lavori"; nel cantiere, tab Documenti, la pill "foto prima: 48" o "mancanti".
+
+**File copertina e analisi dei rischi SUVA** (cantiere → Documenti): "File copertina" stampa il foglio da tenere in cantiere: codice MC, committente e contatti, responsabile ramo e capo squadra, periodo, contratto e acconti, squadra e furgoni, lista materiale, materiali e colori, documenti nel fascicolo, stato SUVA e foto prima, numeri d'emergenza, firme. "Analisi rischi SUVA" apre la lista di controllo (12 punti: ponteggi, scale, piattaforme, prodotti chimici, polveri, DPI, elettricità, carichi, impianto cantiere, coordinamento, istruzione nuovi e interinali, amianto) con note, si salva da sola, "Segna tutto verificato", stampa. Villa Bernasconi e Residenza al Lago sono già compilate; Hotel Ceresio no (compare in Attività).
+
+**Smistamento delle richieste per ramo** (Inbox): due e-mail nuove a info@: Studio Regazzoni (contropareti e controsoffitti) e famiglia Keller (tinteggiatura appartamento). Aprendole, il bottone "Inoltra ad Antonio (gesso)" o "a Stefano (pittura)" è già proposto dalle parole chiave, con l'alternativa accanto. Un clic: attività "Sopralluogo" assegnata al responsabile tra due giorni con i dati del richiedente e gli allegati, e-mail di inoltro, notifica, etichetta "Richiesta offerta". In Attività le richieste non smistate compaiono come controllo.
+
+**Invito nell'app con QR** (Persone → collaboratore → "Invito con QR"): codice QR, link, PIN di conferma, scadenza 7 giorni, lingua; "Invia per SMS" o WhatsApp, oppure stampa per consegnarlo a mano. Niente password: il telefono apre l'app già con il nome giusto.
+
+**Fornitori reali di gessatura**: Röfix, Fassa Bortolo, Weber, Siniat, Protektor, Fixit, Isover, più Dold (pittura), Würth e Lawil Ponteggi (dal preventivo vero di Ivo).
+
+**Come mostrarlo in 4 minuti**: telefono con ?u=capo → Bollettino → "Per la squadra" → 8.5 a tutti → Invia → ufficio: Bollettini (dettaglio con "capo squadra") → Inbox: apri Regazzoni → "Inoltra ad Antonio" → Attività → cantiere Hotel Ceresio → Documenti → "Analisi rischi SUVA" → "File copertina" → stampa.
+
 ## Novità della versione 12 (6 novembre sera): punti 4-10 di REQUISITI-IVO.md
 
 Tutto in `extra7.js`. I codici cantiere si leggono ora come li scrive Ivo sulla lavagna: "MC 409/26" (internamente restano "MC 20-26.409").

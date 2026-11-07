@@ -83,12 +83,17 @@ const S=[
 {t:'App operaio (sul telefono)',min:4,say:'"L\'operaio fa tre tocchi: arrivo, conferma, vai. Il resto lo fa il piano."',items:[
  ['Oggi: "Parto" (GPS), "Sono arrivato", Timbra entrata','GPS attivo solo 06:30–18:30 ed entro 500 m dal cantiere. "Simula le 11:55": il promemoria pausa pranzo.',[['Oggi',L('op-oggi','operaio')]]],
  ['Bollettino: è già compilato dal piano; microfono e detta la correzione','"otto ore e mezza, mezz\'ora di viaggio, finito il soffitto, manca un secchio di Indeko". Invia.',[['Bollettino',L('op-bol','operaio')]]],
+ ['Capo squadra: entra come Andrea Mazzola → Bollettino → "Per la squadra" → 8.5 a tutti → Invia','Il capo compila per chi lavora con lui, in un tocco. Ogni operaio riceve il suo bollettino; l\'ufficio vede "capo squadra" nel dettaglio. Per chi non usa l\'app ogni giorno.',[['App del capo',L('op-bol','capo')],['Per la squadra',L('op-squadra','capo')]]],
+ ['Foto "prima": su Hotel Ceresio l\'app chiede le foto prima di iniziare','Avviso con "Scatta ora" in Oggi e Bollettino finché non arrivano; in ufficio il controllo automatico in Attività.',[['Bollettino',L('op-bol','operaio')]]],
  ['Assistente (in rosso nel footer): "Quante vacanze mi restano?" e "domani sono malato"','Risponde e registra dopo conferma.',[['Assistente',L('op-ai','operaio')]]],
  ['Rapporto a regia: Bollettino → "+ Rapporto a regia" → compila → "Fai firmare al cliente"','Il cliente firma col dito a tutto schermo. Senza firma non vale (lo dice l\'app). Va a Stefano per il controllo e diventa fattura a regia.',[['Rapporto a regia',L('op-regia','operaio')]]],
  ['Materiale: dalla schermata Oggi → "caricati sul furgone" → spunta dal telefono','La lista preparata in magazzino, spuntata dal furgone: l\'ufficio la vede aggiornata.',[['Lista dal telefono',L('op-lista','operaio')]]],
  ['Profilo: saldi vacanze e recuperi, chiedi vacanze','',[['Profilo',L('op-mese','operaio')]]],
  ['Scontrino: + in alto → "Fattura fornitore (foto / PDF)" → foto dello scontrino Jumbo','Letto come scontrino, senza cantiere: lo assegni tu. Dal telefono puoi scattarla al volo.',[['Foto scontrino','foto_scontrino_jumbo.jpg'],['Vai',U+'?u=ivo&m=ocr:x#home']]]]},
 {t:'Torna in ufficio: approvazioni',min:2,items:[
+ ['Inbox: apri "Studio Arch. Regazzoni" → "Inoltra ad Antonio (gesso)"','Letizia smista in un clic: il ramo è proposto dalle parole chiave (gesso ad Antonio, pittura a Stefano). Nasce l\'attività "Sopralluogo" con i dati del richiedente, l\'e-mail di inoltro e la notifica.',[['Inbox',L('inbox','letizia')]]],
+ ['Cantiere Hotel Ceresio → Documenti → "Analisi rischi SUVA" → "File copertina" → Stampa','La lista di controllo (12 punti) e il foglio da tenere in cantiere: contatti, squadra, furgoni, colori, documenti, sicurezza, firme.',[['Documenti',U+'?u=stefano#cantiere/MC%2020-26.421']]],
+ ['Persone → Francesco De Luca → "Invito con QR" → Invia per SMS','Onboarding senza password: QR, link, PIN. Per i 40 operai in 20 minuti.',[['Persone',L('persone','ivo')]]],
  ['Stefano: Bollettini → il bollettino appena inviato con il microfono → Approva','',[['Bollettini',L('bollettini','stefano')]]],
  ['Assenze → richiesta vacanze → Approva; Messaggi → risposta all\'operaio','',[['Bollettini',L('bollettini','stefano')],['Messaggi',L('messaggi','stefano')]]],
  ['Bollettini → Rapporti a regia → il rapporto firmato → "Controllato" → "Crea fattura a regia"','Dal blocchetto cartaceo alla fattura in due clic, con la firma del cliente dentro al documento.',[['Rapporti a regia',U+'?u=stefano&t=bol:regia#bollettini']]],
