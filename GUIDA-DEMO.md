@@ -42,6 +42,22 @@ Login: "Accedi con Microsoft 365" apre il selettore account. L'e-mail/password f
 - **Impostazioni**: profilo e notifiche, azienda e parametri (break-even, struttura, indennità… ricalcolo live), **utenti e inviti** (invita via Microsoft o PIN, reinvia, revoca, disattiva), ruoli, **lingua** (IT/DE/FR/EN sul menu) e **tema** (chiaro/scuro/auto), integrazioni, dati (ripristino, export JSON, import PUNTANET).
 - **App operaio** (telefono): Oggi (viaggio GPS "Parto/Sono arrivato", timbratura con geofence, cambio cantiere, vacanze, malattia, scansione materiale), Bollettino (**detta a voce**: ore, viaggio, attività e note compilate in automatico, inviate a responsabile e direttore), Viaggi e km, Messaggi (con voce), Io (conguaglio, vacanze, dati).
 
+## Novità della versione 14 (7 novembre): lingua, approvazioni dal telefono, chiusura mese, offline, archivio
+
+Tutto in `extra9.js`. Chiude i gap di VALUTAZIONE.md (lingua operai, approvazioni da telefono, chiusura mese guidata, offline) e il registro di 5 anni di REQUISITI-IVO.md.
+
+**Lingua dell'app operaio** (telefono → Profilo → "Lingua dell'app"): italiano, portoghese, spagnolo, albanese. Cambia tutta l'app dell'operaio (schede, bottoni, attività, etichette); l'ufficio continua a vedere tutto in italiano. Ricardo Santos e Daniel Pereira sono già in portoghese, Samir Hoxha in albanese, Omar Bouzid in spagnolo.
+
+**Approvazioni dal telefono** (ufficio → "Approvazioni", o https://capomastro-self.vercel.app/?u=stefano#approvazioni dal telefono): una pagina fatta per il pollice con tutto ciò che aspetta un sì: bollettini (con "Approva i N senza anomalie"), fatture da vistare, rapporti a regia, assenze, km. Stefano vede la pittura, Antonio la gessatura, Ivo tutto; filtro in alto. Approva, modifica e approva, apri.
+
+**Chiusura del mese guidata** (Bollettini → "Chiusura ottobre"): cinque passi in ordine con lucchetto finale. 1) bollettini mancanti con "Sollecita sull'app" o "Era assente"; 2) da approvare e anomalie (non si chiude finché la coda non è vuota); 3) conguaglio ore per ramo: gessatori mensile (saldo, straordinari +25%), pittori con saldo cumulato; 4) indennità pranzo, km, bollettini agenzia, regie da fatturare; 5) export a SelectLine Lohn, archivio CPC del mese, "Chiudi ottobre". Dopo la chiusura i bollettini di ottobre mostrano "mese chiuso".
+
+**Offline simulato** (telefono → Profilo → "Rete" → "Simula assenza di rete"): compare la barra "Sei senza rete"; bollettino, bollettini della squadra e km restano sul telefono ("1 in attesa di invio") e partono con "Torna online". Dimostra l'app in cantina e in galleria.
+
+**Archivio 5 anni** (Bollettini → "Archivio 5 anni"): anni 2021-2026 con i bollettini per mese e il lucchetto sui mesi chiusi, controllo CPC del 2024, ricerca per collaboratore e periodo, "Export CPC di questo periodo" e PDF. Nota: conservazione minima 5 anni, poi 10 come i documenti contabili.
+
+**Come mostrarlo in 4 minuti**: telefono ?u=operaio → Profilo → lingua Português → Bollettino → torna a Italiano → Profilo → "Simula assenza di rete" → Bollettino → Invia → "Torna online" → ufficio ?u=stefano#approvazioni → "Approva i N senza anomalie" → Bollettini → Chiusura ottobre → passi 1-5 → Chiudi ottobre → Archivio 5 anni → 2024.
+
 ## Novità della versione 13 (7 novembre): capo squadra, foto prima, file copertina, smistamento, QR
 
 Tutto in `extra8.js`. Risponde ai punti di REQUISITI-IVO.md rimasti (1.2 agenzie e registro, 1.4 file copertina e SUVA, 1.5 smistamento e foto prima) e ai due gap principali di VALUTAZIONE.md (capo squadra, onboarding senza password).

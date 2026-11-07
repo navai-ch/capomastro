@@ -89,8 +89,11 @@ const S=[
  ['Rapporto a regia: Bollettino → "+ Rapporto a regia" → compila → "Fai firmare al cliente"','Il cliente firma col dito a tutto schermo. Senza firma non vale (lo dice l\'app). Va a Stefano per il controllo e diventa fattura a regia.',[['Rapporto a regia',L('op-regia','operaio')]]],
  ['Materiale: dalla schermata Oggi → "caricati sul furgone" → spunta dal telefono','La lista preparata in magazzino, spuntata dal furgone: l\'ufficio la vede aggiornata.',[['Lista dal telefono',L('op-lista','operaio')]]],
  ['Profilo: saldi vacanze e recuperi, chiedi vacanze','',[['Profilo',L('op-mese','operaio')]]],
+ ['Profilo → "Lingua dell\'app" → Português, poi torna a Italiano','Tutta l\'app dell\'operaio cambia lingua (pt, es, sq). L\'ufficio resta in italiano.',[['Profilo',L('op-mese','operaio')]]],
+ ['Profilo → "Rete" → "Simula assenza di rete" → Bollettino → Invia → "Torna online"','In cantina l\'app salva sul telefono e invia dopo: "1 in attesa di invio".',[['Profilo',L('op-mese','operaio')]]],
  ['Scontrino: + in alto → "Fattura fornitore (foto / PDF)" → foto dello scontrino Jumbo','Letto come scontrino, senza cantiere: lo assegni tu. Dal telefono puoi scattarla al volo.',[['Foto scontrino','foto_scontrino_jumbo.jpg'],['Vai',U+'?u=ivo&m=ocr:x#home']]]]},
 {t:'Torna in ufficio: approvazioni',min:2,items:[
+ ['Approvazioni dal telefono: apri ?u=stefano#approvazioni sul telefono → "Approva i N senza anomalie"','Una pagina per il pollice con bollettini, fatture da vistare, regie, assenze, km. Stefano vede la pittura, Antonio la gessatura.',[['Approvazioni',L('approvazioni','stefano')]]],
  ['Inbox: apri "Studio Arch. Regazzoni" → "Inoltra ad Antonio (gesso)"','Letizia smista in un clic: il ramo è proposto dalle parole chiave (gesso ad Antonio, pittura a Stefano). Nasce l\'attività "Sopralluogo" con i dati del richiedente, l\'e-mail di inoltro e la notifica.',[['Inbox',L('inbox','letizia')]]],
  ['Cantiere Hotel Ceresio → Documenti → "Analisi rischi SUVA" → "File copertina" → Stampa','La lista di controllo (12 punti) e il foglio da tenere in cantiere: contatti, squadra, furgoni, colori, documenti, sicurezza, firme.',[['Documenti',U+'?u=stefano#cantiere/MC%2020-26.421']]],
  ['Persone → Francesco De Luca → "Invito con QR" → Invia per SMS','Onboarding senza password: QR, link, PIN. Per i 40 operai in 20 minuti.',[['Persone',L('persone','ivo')]]],
@@ -101,6 +104,7 @@ const S=[
  ['Impostazioni → CCL e calendari: i due calendari aziendali e il pranzo gessatori per km','Gesso 2\'018 h, pittura 2\'016 h; soglia straordinario per ramo; "da verificare sul testo 2026". Chiedi a Ivo il PDF dei CCL.',[['CCL e calendari',U+'?u=ivo&t=imp:ccl#impostazioni']]],
  ['Offerte → Prezzi dallo storico; Capitolati → Canavée → "Genera bozza d\'offerta"','Mediana dei prezzi, capitoli sempre presenti, misure dai disegni: da 5-10 ore a un\'ora. Chiedi le offerte reali degli ultimi due anni.',[['Storico',U+'?u=ivo&t=comm:storico#commerciale'],['Capitolato',L('capitolato/CAP-01')]]]]},
 {t:'Chiusura',min:3,say:'"Tutto quello che vedi è collegabile: SelectLine ha le API, Outlook e Google anche. Con un export da PUNTANET la demo diventa la vostra azienda in una settimana."',items:[
+ ['Bollettini → "Chiusura ottobre": i 5 passi fino al lucchetto','Mancanti con sollecito, coda, conguaglio per ramo (gessatori mensile, pittori cumulato), indennità e km, export SelectLine Lohn e archivio CPC. Poi "Archivio 5 anni" → 2024.',[['Chiusura',U+'?u=ivo#bollettini']]],
  ['Impostazioni: break-even da 70 a 75, tutto si ricalcola','',[['Azienda e parametri',U+'?u=ivo&t=imp:azienda#impostazioni']]],
  ['Dati: "Importa da PUNTANET" con il CSV di esempio','',[['Dati',U+'?u=ivo&t=imp:dati#impostazioni'],['CSV','Export_PUNTANET_cantieri.csv']]],
  ['Contabilità: batch SelectLine e fatture fornitori da esportare','',[['Contabilità',L('contabilita')]]],
