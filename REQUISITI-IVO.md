@@ -94,6 +94,8 @@ Come lavorano oggi: blocchetto cartaceo n. 2882 (data, cantiere, descrizione ope
 
 ## 2. Cosa aggiungere alla demo, in ordine di valore
 
+**Stato al 6 novembre sera**: i punti 1-3 sono nella demo (v11, `extra6.js`), i punti 4-10 anche (v12, `extra7.js`). I punti 9 e 10 sono simulazioni del concetto: il preventivatore vero ha bisogno delle offerte reali degli ultimi due anni, il capitolato IA dei documenti veri. Dettagli in GUIDA-DEMO.md.
+
 Sforzo stimato sulla demo attuale: **S** mezza giornata, **M** 1-2 giorni, **L** più di 2 giorni.
 
 1. **Fattura fornitore riga per riga con "Assegna a"** (M). Caricamento generico, numero interno F-progressivo, righe OCR, dropdown cantiere per riga, selezione multipla, stato "da vistare" con coda per Antonio e Stefano, link dal costo alla fattura. È il processo che Ivo ha descritto con più dettaglio.

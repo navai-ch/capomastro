@@ -42,6 +42,26 @@ Login: "Accedi con Microsoft 365" apre il selettore account. L'e-mail/password f
 - **Impostazioni**: profilo e notifiche, azienda e parametri (break-even, struttura, indennità… ricalcolo live), **utenti e inviti** (invita via Microsoft o PIN, reinvia, revoca, disattiva), ruoli, **lingua** (IT/DE/FR/EN sul menu) e **tema** (chiaro/scuro/auto), integrazioni, dati (ripristino, export JSON, import PUNTANET).
 - **App operaio** (telefono): Oggi (viaggio GPS "Parto/Sono arrivato", timbratura con geofence, cambio cantiere, vacanze, malattia, scansione materiale), Bollettino (**detta a voce**: ore, viaggio, attività e note compilate in automatico, inviate a responsabile e direttore), Viaggi e km, Messaggi (con voce), Io (conguaglio, vacanze, dati).
 
+## Novità della versione 12 (6 novembre sera): punti 4-10 di REQUISITI-IVO.md
+
+Tutto in `extra7.js`. I codici cantiere si leggono ora come li scrive Ivo sulla lavagna: "MC 409/26" (internamente restano "MC 20-26.409").
+
+**Lavagna di pianificazione** (Pianificazione → "Lavagna"): una colonna per cantiere con le targhette delle persone e dei furgoni, colonna "Non pianificati", colonna "Agenzia e stagiaire" (Luca Varrone/Adecco, Milan Petrić/Manpower, Noemi Ferrari/SPAI, in arancione), colonna "Assenti". Trascina una targhetta da una colonna all'altra (spunta "tutta la settimana" per copiarla da lunedì a venerdì), clicca per ore e orario. Nota del giorno in alto ("Giovedì 12 riservato Masoni" è già sul 12.11). Sotto, i cantieri acquisiti in attesa (Farmacia Coop, Masoni Arogno… come in basso a sinistra sulla lavagna vera): un clic crea il cantiere.
+
+**CCL per ramo e calendari aziendali** (Impostazioni → "CCL e calendari"): calendario 2026 gesso (2'018 h, 247 giorni, 8 o 8.5 h secondo il mese) e pittura (2'016 h) dalle due fotocopie; regole per ramo (soglia straordinario 44.5 / 44 h con +25%, pranzo gessatori a scaglioni 15/20/27/37 CHF per km dalla sede, viaggio, conguaglio, Commissione paritetica), parametri modificabili e avviso "da verificare sul testo 2026". L'indennità gessatori per km è usata nell'app operaio (Oggi, Profilo), nel dettaglio bollettino e nella scheda cantiere. L'operaio ha "Le mie regole" nel Profilo.
+
+**Export Commissione paritetica** (Bollettini → "Export CPC", o da CCL e calendari): periodo da/a, persona o tutti; CSV con nome, categoria, cantiere, luogo, orari, ore, viaggio, km, indennità pranzo, veicolo, stato; anteprima stampabile con intestazione MY COLOR. Nota sui 5 anni di archivio.
+
+**Bollettini**: "Modifica e approva" nel dettaglio (ore e viaggio corretti, motivo, messaggio per conoscenza all'operaio, storico della modifica visibile); nell'app il campo "Spostamento con" (con la squadra, furgone con targa, auto privata) che finisce nel bollettino; "+ Bollettino agenzia" per registrare il cartaceo firmato degli interinali con la foto; Veicoli → "Oggi: chi usa quale furgone" (furgone, autista, cantiere, chi è a bordo).
+
+**GPS**: Impostazioni → Azienda → "GPS e promemoria": finestra oraria 06:30–18:30, raggio 500 m, promemoria pausa 11:55. Nell'app operaio la card "GPS attivo…" e il bottone "Simula le 11:55" mostrano la notifica "Pausa pranzo: sei a 35 m dal cantiere, timbro la pausa?". Spiegazione dei costi: il raggio si calcola sul telefono, nessuna API di mappe a pagamento.
+
+**Prezzi dallo storico** (Offerte e fatture → "Prezzi dallo storico"): 312 offerte analizzate, capitoli sempre presenti (impianto cantiere 200, protezioni 600, smaltimento 300, ponteggio da preventivo fornitore) con la frequenza, tabella delle posizioni con mediana, min, max, numero offerte, ultimo uso. L'offerta con IA aggiunge da sola i capitoli fissi e dice da dove vengono i prezzi.
+
+**Capitolato da più file** (+ → Capitolato da analizzare): carichi tutti i file insieme (capitolato, piani esecutivi, CAD, render, modulo d'offerta) più un prompt con le indicazioni; la pagina del capitolato mostra "Documenti analizzati", "Misure prese dai disegni" e il bottone "Genera bozza d'offerta" che apre il builder con le posizioni, le quantità dalle misure, i prezzi dallo storico e i capitoli fissi. I tre capitolati di esempio hanno già i documenti.
+
+**Come mostrarlo in 5 minuti**: Pianificazione → Lavagna → trascina Varrone (Adecco) su un cantiere → Impostazioni → CCL e calendari (calendario gesso, pranzo per km) → Bollettini → Export CPC → anteprima → telefono: Oggi → "Simula le 11:55" → Bollettino → "Spostamento con" → ufficio: Offerte → Prezzi dallo storico → Capitolati → Canavée → "Genera bozza d'offerta".
+
 ## Novità della versione 11 (6 novembre, dopo l'incontro con Ivo)
 
 Tre processi reali di MY COLOR ricostruiti nella demo (vedi REQUISITI-IVO.md, sezione 2, punti 1-3). Tutto in `extra6.js`.
